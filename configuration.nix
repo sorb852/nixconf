@@ -3,11 +3,8 @@
 {
   imports =
     [
-      ./hardware-configuration.nix
-      ./system.nix
-      ./tools.nix
-      ./programming.nix
-      ./applications.nix
+      ./nixosModules
+      ./homeModules
     ];
 
   system.stateVersion = "25.11";

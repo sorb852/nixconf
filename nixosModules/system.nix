@@ -30,6 +30,7 @@
     variant = "";
   };
 
+  # Users
   users.users.sorb852 = {
     isNormalUser = true;
     description = "sorbileg";
