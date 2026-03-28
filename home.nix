@@ -1,6 +1,10 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
+  imports = [
+    ./homeModules/tmux.nix
+  ];
+
   home.stateVersion = "25.11";
   home.username = "sorb852";
   home.homeDirectory = "/home/sorb852";
@@ -17,10 +21,14 @@
     ranger
     wget
     curl
+    htop
+    btop
     wl-clipboard
     yt-dlp
     spotdl
   ];
+
+  wayland.windowManager.sway.enable = true;
 
   programs = {
     firefox.enable = true;
@@ -57,18 +65,8 @@
     bash = {
       enable = true;
       shellAliases = {
-        reboot = "sudo nixos-rebuild switch";
+        rebuild = "sudo nixos-rebuild switch";
       };
-    };
-    tmux = {
-      enable = true;
-      mouse = true;
-      shortcut = "a";
-      prefix = "C-a";
-      resizeAmount = 5;
-      historyLimit = 10000;
-      keyMode = "vi";
-      baseIndex = 1;
     };
   };
 }

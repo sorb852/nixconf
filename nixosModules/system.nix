@@ -43,6 +43,9 @@
   services.pulseaudio.enable = true;
   hardware.bluetooth.enable = true;
 
+  # Apparently needed for sway with home-manager
+  security.polkit.enable = true;
+
   # idk for steam and some other stuff
   nixpkgs.config.allowUnfree = true;
 
