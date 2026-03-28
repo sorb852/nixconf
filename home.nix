@@ -4,15 +4,13 @@
   home.stateVersion = "25.11";
   home.username = "sorb852";
   home.homeDirectory = "/home/sorb852";
+
   home.packages = with pkgs; [
     kitty
     pavucontrol
-    neovim
-
     python3
     gcc
     rustup
-
     fd
     fzf
     eza
@@ -23,16 +21,24 @@
     yt-dlp
     spotdl
   ];
+
   programs = {
     firefox.enable = true;
 
     vim.enable = true;
     # Doesnt work????
-    #neovim = {
-    #  enable = true;
-    #  viAlias = true;
-    #  defaultEditor = true;
-    #};
+    neovim = {
+      enable = true;
+      viAlias = true;
+      defaultEditor = true;
+      # Didnt change much really
+      # extraPackages = with pkgs; [
+      #   git
+      #   ripgrep
+      #   python3
+      #   lua
+      # ];
+    };
 
     bat.enable = true;
     zoxide = {
@@ -48,7 +54,12 @@
       };
     };
     lazygit.enable = true;
-    bash.enable = true;
+    bash = {
+      enable = true;
+      shellAliases = {
+        reboot = "sudo nixos-rebuild switch";
+      };
+    };
     tmux = {
       enable = true;
       mouse = true;

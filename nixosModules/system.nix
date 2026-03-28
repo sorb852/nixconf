@@ -41,6 +41,7 @@
   services.openssh.enable = true;
   services.pipewire.enable = false;
   services.pulseaudio.enable = true;
+  hardware.bluetooth.enable = true;
 
   # idk for steam and some other stuff
   nixpkgs.config.allowUnfree = true;

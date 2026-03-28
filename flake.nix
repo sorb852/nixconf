@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -16,8 +16,10 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          # js move the old files
+          home-manager.backupFileExtension = "nix.bak";
 
-          home-manager.users.sorb852 = (import ./home.nix);
+          home-manager.users.sorb852 = import ./home.nix;
 
           nix.settings.experimental-features = [ "nix-command" "flakes" ];
         }
