@@ -1,12 +1,9 @@
 { pkgs, ... }:
 
 {
-
   environment.systemPackages = with pkgs; [
     wget
     curl
-
-    wl-clipboard
   ];
 
   programs = {
