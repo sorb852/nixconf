@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   programs.neovim = {
@@ -25,6 +25,8 @@
     ];
   };
   # home.file.".config/test".source = ../flake.nix;
-  home.file.".config/test".source = ../nvim-config;
-  # home.file.".config/nvim".source = ../nvim-config;
+  home.file.".config/nvim" = {
+    recursive = true;
+    source = inputs.nvim-config;
+  };
 }
