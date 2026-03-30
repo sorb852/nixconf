@@ -1,3 +1,5 @@
+{ pkgs, ... }:
+
 let
   modifier = "Mod4";
   fileManager = "kitty --title ranger -e ranger";
@@ -5,6 +7,18 @@ let
   terminal = "kitty";
   resizeAmount = "10";
 in {
+  home.packages = with pkgs; [
+    # application dependencies
+    kitty
+    wmenu
+    ranger
+
+    # keybind dependencies
+    pulseaudio
+    playerctl
+    brightnessctl
+  ];
+
   wayland.windowManager.sway = {
     enable = true;
     config = {

@@ -5,12 +5,13 @@
     ./firefox.nix
     ./git.nix
     ./lazygit.nix
-    ./nvim.nix
+    ./nixvim.nix
     ./packages.nix
     ./ranger.nix
     ./sway.nix
     ./tmux.nix
     ./vim.nix
     ./zoxide.nix
+    ./flatpak.nix
   ];
 }
