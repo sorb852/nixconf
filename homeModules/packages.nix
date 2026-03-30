@@ -2,7 +2,6 @@
 
 {
   home.packages = with pkgs; [
-    kitty
     pavucontrol
     python3
     gcc

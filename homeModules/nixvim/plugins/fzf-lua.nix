@@ -21,5 +21,10 @@ in
         { k = "<leader><leader>"; a = "buffers"; d = "Search buffers"; }
       ]
       );
+    settings.win-opts = {
+      preview.default = "bat";
+      preview.layout = "vertical";
+      preview.vertical = "down|45%";
+    };
   };
 }
