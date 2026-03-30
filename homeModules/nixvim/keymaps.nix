@@ -1,13 +1,14 @@
 let
-  mapping = { k, a, m ? ["n"] }: { action = a; key = k; mode = m; };
+  mapping = { k, a, d ? null, m ? ["n"] }: { action = a; key = k; mode = m; options.desc = d; };
 in
 {
   keymaps = [
-    (mapping { k = "<esc>"    ; a = "<cmd>nohlsearch<CR>"; })
-    (mapping { k = "<leader>g"; a = "<cmd>LazyGit<CR>"; })
+    (mapping { k = "<leader>bd"; a = "<cmd>bd<CR>"; d = "[B]uffer [D]eletion"; })
+    (mapping { k = "<C-s>"     ; a = "<cmd>w<CR>"; d = "Save"; })
 
-    (mapping { k = "<leader>sg"; a = "<cmd>Telescope live_grep<CR>"; })
-    (mapping { k = "<leader>sf"; a = "<cmd>Telescope find_files<CR>"; })
-    (mapping { k = "<leader>e" ; a = "<cmd>Oil<CR>"; })
+    (mapping { k = "<esc>"    ; a = "<cmd>nohlsearch<CR>"; })
+    (mapping { k = "<leader>g"; a = "<cmd>LazyGit<CR>"; d = "Open Lazy[g]it"; })
+
+    (mapping { k = "<leader>e"       ; a = "<cmd>Oil<CR>"; d = "Open [E]xplorer";} )
   ];
 }

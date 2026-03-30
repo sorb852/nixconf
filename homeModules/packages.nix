@@ -17,5 +17,6 @@
     wl-clipboard
     yt-dlp
     spotdl
+    ripgrep
   ];
 }
