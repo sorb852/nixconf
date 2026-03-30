@@ -5,7 +5,7 @@
     ./firefox.nix
     ./git.nix
     ./lazygit.nix
-    ./nixvim.nix
+    ./nixvim # Our special boy
     ./packages.nix
     ./ranger.nix
     ./sway.nix
