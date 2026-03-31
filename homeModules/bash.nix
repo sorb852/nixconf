@@ -1,6 +1,18 @@
+# { pkgs, ... }:
+
 {
+  # home.packages = with pkgs; [
+  #   blesh
+  # ];
+
   programs.bash = {
     enable = true;
+    enableCompletion = true;
+    bashrcExtra = ''
+      #[[ $- == *i* ]] && source -- "$(blesh-share)"/ble.sh --attach=none
+      # ...
+      #[[ ! ''${BLE_VERSION-} ]] || ble-attach
+    '';
     shellAliases = {
       pioneer-rebuild = "git add ~/dotfiles && sudo nixos-rebuild switch";
       pioneer-build = "git add ~/dotfiles && sudo nixos-rebuild build";
