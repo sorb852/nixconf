@@ -8,5 +8,8 @@
     ./oil.nix
     ./treesitter.nix
     ./web-devicons.nix
+    ./blink.nix
+    ./fidget.nix
+    ./conform.nix
   ];
 }

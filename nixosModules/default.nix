@@ -17,5 +17,6 @@
     ./ssh.nix
     ./timezone.nix
     ./users.nix
+    ./xdg-portal.nix
   ];
 }
