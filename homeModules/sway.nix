@@ -6,7 +6,8 @@ let
   menu = "wmenu-run";
   terminal = "kitty";
   resizeAmount = "10";
-in {
+in
+{
   home.packages = with pkgs; [
     # application dependencies
     kitty
@@ -23,7 +24,7 @@ in {
     enable = true;
     config = {
       fonts = {
-        names = ["Anka/Coder Condensed"];
+        names = [ "Anka/Coder Condensed" ];
         size = 11.0;
       };
       floating = {
@@ -41,15 +42,16 @@ in {
 
       keybindings = {
         "${modifier}+r" = "reload";
-        "${modifier}+m" = "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";
+        "${modifier}+m" =
+          "exec swaynag -t warning -m 'What do you want to do?' -b 'Poweroff' 'systemctl poweroff' -b 'Reboot' 'systemctl reboot'";
 
         # Window state and some exec binds
-        "${modifier}+e"      = "exec ${fileManager}";
-        "${modifier}+v"      = "floating toggle";
+        "${modifier}+e" = "exec ${fileManager}";
+        "${modifier}+v" = "floating toggle";
         "${modifier}+Return" = "exec ${terminal}";
-        "${modifier}+space"  = "exec ${menu}";
-        "Mod1+F4"            = "kill";
-        "F11"                = "fullscreen toggle";
+        "${modifier}+space" = "exec ${menu}";
+        "Mod1+F4" = "kill";
+        "F11" = "fullscreen toggle";
 
         # Window movement
         "${modifier}+h" = "focus left";
@@ -88,22 +90,22 @@ in {
         "${modifier}+Shift+9" = "move container to workspace 9; workspace 9";
 
         # Audio binds
-        "XF86AudioMute"        = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
+        "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
         "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
         "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
 
         # Brightness binds
         "XF86MonBrightnessDown" = "exec brightnessctl set 5%-";
-        "XF86MonBrightnessUp"   = "exec brightnessctl set 5%+";
+        "XF86MonBrightnessUp" = "exec brightnessctl set 5%+";
 
         # Player
-        "XF86AudioNext"  = "exec playerctl next";
+        "XF86AudioNext" = "exec playerctl next";
         "XF86AudioPause" = "exec playerctl play-pause";
-        "XF86AudioPlay"  = "exec playerctl play-pause";
-        "XF86AudioPrev"  = "exec playerctl previous";
+        "XF86AudioPlay" = "exec playerctl play-pause";
+        "XF86AudioPrev" = "exec playerctl previous";
       };
 
-      modes = {};
+      modes = { };
     };
   };
 }
