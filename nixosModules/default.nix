@@ -18,5 +18,6 @@
     ./timezone.nix
     ./users.nix
     ./xdg-portal.nix
+    ./greetd.nix
   ];
 }
