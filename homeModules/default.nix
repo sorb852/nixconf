@@ -11,7 +11,6 @@
     ./ranger.nix
     ./sway.nix
     ./tmux.nix
-    ./vim.nix
     ./zoxide.nix
     ./flatpak
     ./kitty.nix

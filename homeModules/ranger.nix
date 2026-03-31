@@ -1,6 +1,6 @@
 {
   programs.ranger = {
     enable = true;
-    # To config
+    # TODO: To config
   };
 }
