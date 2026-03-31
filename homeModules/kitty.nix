@@ -3,7 +3,7 @@
     enable = true;
     font.name = "Anka/Coder Condensed";
     font.size = 11;
-    shellIntegration.enableBashIntegration = true;
+    shellIntegration.enableZshIntegration = true;
 
     settings = {
       cursor_shape = "block";

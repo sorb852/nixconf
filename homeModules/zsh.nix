@@ -1,20 +1,19 @@
-# NOTE: Unused right now
-
-# { pkgs, ... }:
-
 {
-  # home.packages = with pkgs; [
-  #   blesh
-  # ];
-
-  programs.bash = {
+  programs.zsh = {
     enable = true;
     enableCompletion = true;
-    bashrcExtra = ''
-      #[[ $- == *i* ]] && source -- "$(blesh-share)"/ble.sh --attach=none
-      # ...
-      #[[ ! ''${BLE_VERSION-} ]] || ble-attach
+    autosuggestion.enable = true;
+    initContent = ''
+      # Move by word
+      bindkey "^[[1;5D" backward-word
+      bindkey "^[[1;5C" forward-word
+      # Delete by word
+      bindkey "^H" backward-kill-word
+      bindkey "^[[4;5~" kill-word
     '';
+
+    syntaxHighlighting.enable = true;
+
     shellAliases = {
       pioneer-rebuild = "git add ~/dotfiles && sudo nixos-rebuild switch";
       pioneer-build = "git add ~/dotfiles && sudo nixos-rebuild build";
