@@ -13,5 +13,6 @@
     ./vim.nix
     ./zoxide.nix
     ./flatpak
+    ./kitty.nix
   ];
 }
