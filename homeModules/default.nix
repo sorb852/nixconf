@@ -1,6 +1,5 @@
 {
   imports = [
-    # ./bash.nix
     ./zsh.nix
     ./bat.nix
     ./firefox.nix

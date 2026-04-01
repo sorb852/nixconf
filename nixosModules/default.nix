@@ -19,5 +19,6 @@
     ./users.nix
     ./xdg-portal.nix
     ./greetd.nix
+    ./steam.nix
   ];
 }

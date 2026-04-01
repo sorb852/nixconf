@@ -30,6 +30,8 @@ in
       floating = {
         criteria = [
           { class = "Pavucontrol"; }
+          { title = "Friends List"; }
+          { title = "Steam - Update News"; }
         ];
       };
       window = {

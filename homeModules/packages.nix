@@ -17,5 +17,6 @@
     yt-dlp
     spotdl
     ripgrep
+    jq
   ];
 }
