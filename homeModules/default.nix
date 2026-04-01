@@ -13,5 +13,6 @@
     ./zoxide.nix
     ./flatpak
     ./kitty.nix
+    ./eza.nix
   ];
 }

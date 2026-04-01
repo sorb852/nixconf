@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    rolling-pkgs.url = "github:nixos/nixpkgs/f2e835f48b16c6a26d3b9249362e93867b262f9d"; # Used for some nvim plugins
 
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -14,10 +15,19 @@
   };
 
   outputs =
-    inputs@{ nixpkgs, home-manager, ... }:
+    inputs@{
+      nixpkgs,
+      rolling-pkgs,
+      home-manager,
+      ...
+    }:
+    let
+      system = "x86_64-linux";
+      rolling = rolling-pkgs.legacyPackages.${system};
+    in
     {
       nixosConfigurations.Centaur = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+        inherit system;
         specialArgs = { inherit inputs; };
         modules = [
           ./configuration.nix
@@ -27,7 +37,7 @@
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "nix.bak";
 
-            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.extraSpecialArgs = { inherit inputs rolling; };
 
             home-manager.users.sorb852 = import ./home.nix;
 

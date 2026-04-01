@@ -1,3 +1,5 @@
+{ rolling, ... }:
+
 let
   create_attr_list_mapping =
     {
@@ -19,6 +21,8 @@ in
 {
   plugins.fzf-lua = {
     enable = true;
+    # Get the newer release
+    package = rolling.vimPlugins.fzf-lua;
     keymaps = builtins.listToAttrs (
       map create_attr_list_mapping [
         {
@@ -37,6 +41,21 @@ in
           d = "[S]earch [K]eymaps";
         }
         {
+          k = "<leader>sc";
+          a = "colorschemes";
+          d = "[S]earch [C]olorschemes";
+        }
+        {
+          k = "<leader>sm";
+          a = "manpages";
+          d = "[S]earch [M]an pages";
+        }
+        {
+          k = "<leader>sh";
+          a = "helptags";
+          d = "[S]earch [H]elp";
+        }
+        {
           k = "<leader><leader>";
           a = "buffers";
           d = "Search buffers";
@@ -49,4 +68,35 @@ in
       preview.vertical = "down|45%";
     };
   };
+
+  # HACK (probably) FUCKING HORRIBLE
+  keymaps = [
+    {
+      mode = "n";
+      key = "<space>ss";
+      action.__raw = ''
+        function()
+          local f = require('fzf-lua')
+          local p = require('persisted')
+
+          local s = p.list()
+          f.fzf_exec(s, {
+            prompt = "Sessions> ",
+            actions = {
+              ["default"] = function(selected)
+                if selected and #selected > 0 then
+                  local sesh_name = selected[1]
+                  p.load({ session = sesh_name })
+                end
+              end
+            }
+          })
+        end
+      '';
+      options = {
+        desc = "[S]earch [S]essions";
+        silent = true;
+      };
+    }
+  ];
 }

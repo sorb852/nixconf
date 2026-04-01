@@ -8,7 +8,6 @@
     rustup
     fd
     fzf
-    eza
     wget
     curl
     htop
