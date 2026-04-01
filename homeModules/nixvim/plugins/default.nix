@@ -12,5 +12,6 @@
     ./fidget.nix
     ./conform.nix
     ./mini.nix
+    ./persisted.nix
   ];
 }

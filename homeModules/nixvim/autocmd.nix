@@ -1,4 +1,7 @@
 {
+  autoGroups = {
+    highlight_yank.clear = true;
+  };
   autoCmd = [
     {
       pattern = "*";
@@ -7,7 +10,7 @@
       group = "highlight_yank";
       callback.__raw = ''
         function()
-          vim.highlight.on_yank { higroup = 'IncSearch', timeout = 500 }
+          vim.hl.on_yank { higroup = 'IncSearch', on_visual = true, timeout = 100 }
         end
       '';
     }
