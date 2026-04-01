@@ -20,5 +20,6 @@
     ./xdg-portal.nix
     ./greetd.nix
     ./steam.nix
+    ./sysrq.nix
   ];
 }

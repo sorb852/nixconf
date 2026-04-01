@@ -42,6 +42,11 @@ in
       inherit modifier;
       inherit terminal;
 
+      startup = [
+        {
+          command = "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway";
+        }
+      ];
       keybindings = {
         "${modifier}+r" = "reload";
         "${modifier}+m" =
