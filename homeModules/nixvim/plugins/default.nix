@@ -11,5 +11,6 @@
     ./blink.nix
     ./fidget.nix
     ./conform.nix
+    ./mini.nix
   ];
 }
