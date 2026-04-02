@@ -14,5 +14,6 @@
     ./flatpak
     ./kitty.nix
     ./eza.nix
+    ./env.nix
   ];
 }
