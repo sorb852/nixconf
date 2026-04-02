@@ -5,7 +5,6 @@
     ./firefox.nix
     ./git.nix
     ./lazygit.nix
-    ./nixvim
     ./packages.nix
     ./ranger.nix
     ./sway.nix
@@ -17,5 +16,6 @@
     ./env.nix
     ./bun.nix
     ./ctf.nix
+    ./nixvim.nix
   ];
 }
