@@ -12,6 +12,22 @@
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+
+    # Gonna try ags for a while
+    # I mean I'm gonna switch to quickshell
+    # But you know
+    # Seems a bit too annoying to config rn, commiting later
+
+    # astal = {
+    #   url = "github:aylur/astal";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    #
+    # ags = {
+    #   url = "github:aylur/ags";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   inputs.astal.follows = "astal";
+    # };
   };
 
   outputs =

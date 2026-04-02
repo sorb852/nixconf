@@ -15,5 +15,7 @@
     ./kitty.nix
     ./eza.nix
     ./env.nix
+    ./bun.nix
+    ./ctf.nix
   ];
 }
