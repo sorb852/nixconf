@@ -17,5 +17,6 @@
     ./bun.nix
     ./ctf.nix
     ./nixvim.nix
+    ./starship.nix
   ];
 }
