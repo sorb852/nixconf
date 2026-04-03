@@ -16,7 +16,7 @@
     ./env.nix
     ./bun.nix
     ./ctf.nix
-    ./nixvim.nix
+    ./nixvim
     ./starship.nix
   ];
 }
