@@ -9,7 +9,7 @@
         pkgs.python3
         pkgs.gcc
         pkgs.rustup
-        self.packages.neovim
+        self.packages.${pkgs.system}.neovim
       ];
     };
 }

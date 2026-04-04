@@ -14,14 +14,6 @@
         VISUAL = "$EDITOR";
       };
 
-      fonts.packages = with pkgs; [
-        tewi-font
-        nerd-fonts.hurmit
-
-        ankacoder-condensed
-        nerd-fonts.symbols-only
-      ];
-
       programs = {
         firefox.enable = true;
       };

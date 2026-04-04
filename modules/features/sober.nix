@@ -1,7 +1,7 @@
 { inputs, ... }:
 
 {
-  flake.homeManager.sober = {
+  flake.homeModules.sober = {
     imports = [
       inputs.nix-flatpak.homeManagerModules.nix-flatpak
     ];

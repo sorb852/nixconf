@@ -4,7 +4,7 @@
 
 {
   flake.nixosModules.system =
-    { ... }:
+    { pkgs, ... }:
     {
       # Other system related modules
       imports = [
@@ -41,5 +41,13 @@
         wlr.enable = true;
         config.common.default = [ "gtk" ];
       };
+
+      # Fonts
+      fonts.packages = with pkgs; [
+        # nerd-fonts.hurmit
+
+        ankacoder-condensed
+        nerd-fonts.symbols-only
+      ];
     };
 }

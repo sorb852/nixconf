@@ -16,6 +16,6 @@
 
   # Not found for some reason???
   # Like it's on the docs tf they on
-  waylandSupport = true;
+  # waylandSupport = true;
   viAlias = true;
 }

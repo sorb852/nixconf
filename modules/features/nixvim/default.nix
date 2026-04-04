@@ -2,7 +2,11 @@
 
 {
   perSystem =
-    { system, pkgs, ... }:
+    {
+      system,
+      pkgs,
+      ...
+    }:
     let
       nixvim' = inputs.nixvim.legacyPackages.${system};
       nixvimLib = inputs.nixvim.lib.${system};
