@@ -1,7 +1,6 @@
 {
   inputs,
   self,
-  pkgs,
   ...
 }:
 
@@ -49,15 +48,15 @@
     home.homeDirectory = "/home/sorb852";
   };
 
-  flake.homeConfigurations."sorb852" = inputs.home-manager.lib.homeManagerConfiguration {
-    inherit pkgs;
-    modules = [
-      self.homeModules.cli
-      self.homeModules.ctf
-      self.homeModules.sober
-      self.homeModules.desktop
-      self.homeModules.programming
-      self.homeModules."sorb852"
-    ];
-  };
+  # FIX: If you want to, fix this I don't think I need it now
+  # flake.homeConfigurations."sorb852" = inputs.home-manager.lib.homeManagerConfiguration {
+  #   modules = [
+  #     self.homeModules.cli
+  #     self.homeModules.ctf
+  #     self.homeModules.sober
+  #     self.homeModules.desktop
+  #     self.homeModules.programming
+  #     self.homeModules."sorb852"
+  #   ];
+  # };
 }
