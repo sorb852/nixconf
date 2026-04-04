@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.Centaur =
+  flake.nixosModules.CentaurHardware =
     {
       config,
       lib,

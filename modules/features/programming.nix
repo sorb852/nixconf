@@ -1,12 +1,15 @@
+{ self, ... }:
+
 {
   flake.homeModules.programming =
     { pkgs, ... }:
     {
       # TODO: import nixvim
-      home.packages = with pkgs; [
-        python3
-        gcc
-        rustup
+      home.packages = [
+        pkgs.python3
+        pkgs.gcc
+        pkgs.rustup
+        self.packages.neovim
       ];
     };
 }
