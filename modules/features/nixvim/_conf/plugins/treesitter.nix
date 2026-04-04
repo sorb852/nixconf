@@ -15,6 +15,11 @@
       cpp
       qmljs
       toml
+      markdown
+      markdown_inline
+      html
+      latex
+      yaml
     ];
   };
 }

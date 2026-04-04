@@ -9,6 +9,9 @@
 
     shiftwidth = 2;
 
+    signcolumn = "yes";
+    cursorline = true;
+
     clipboard = "unnamedplus";
   };
 

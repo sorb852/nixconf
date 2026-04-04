@@ -1,9 +1,11 @@
+{ inputs, ... }:
+
 {
   imports = [
     ./keymaps.nix
     ./opts.nix
-    ./plugins
     ./autocmd.nix
     ./dependencies.nix
+    (inputs.import-tree ./plugins)
   ];
 }
