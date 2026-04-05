@@ -71,10 +71,4 @@
         inherit toRGB fromRGB brighten;
       };
     };
-  # config.colutils =
-
-  #   {
-
-  #   };
-
 }
