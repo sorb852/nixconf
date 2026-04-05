@@ -26,7 +26,7 @@
           # like clear, grep and ls will always be in a system so
           cls = "${lib.getExe' pkgs.toybox "clear"}";
           grep = "${lib.getExe pkgs.gnugrep} --color=auto"; # idk ripgrep is there too
-          ls = "${lib.getExe' pkgs.coreutils "ls"}--color=auto"; # yeah good luck using this when theres eza
+          ls = "${lib.getExe' pkgs.coreutils "ls"} --color=auto"; # yeah good luck using this when theres eza
           e = "${lib.getExe pkgs.eza}";
         };
       };

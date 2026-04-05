@@ -10,6 +10,7 @@
       keyMode = "vi";
       customPaneNavigationAndResize = true;
       reverseSplit = true;
+      terminal = "xterm-kitty";
 
       extraConfig = ''
         bind r source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf reloaded!"
