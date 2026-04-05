@@ -6,15 +6,12 @@ Things may get *deleted* (seperated into different chunks) or *added* (well new 
 - [ ] GOAL: `Nullscape` rice, complete what you started.
 - - [x] Handle theme management
 - - [ ] Well, start themeing
-- - - [ ] Theme kitty
-- - - [ ] Theme prompt (either starship or omp)
-- - - [ ] Theme fastfetch
+- - - [x] Theme kitty
+- - - [ ] Configure and Theme prompt (either starship or omp)
+- - - [ ] Configure and  Theme fastfetch
 - - - [ ] Theme neovim (prolly gonna be hard)
-- [x] ~~Seperate nixvim into a different flake~~
 - [x] REturn nixivm to the orignal flake
 - - [x] Resturcture and maybe implement dentritic (look maybe it could be cool)
-- [ ] MANDATORY, get and configure fastfetch
-- [ ] Prompt configuration
 - [ ] Set up ctf tools ~~(or make a seperate flake that I could then use)~~
 - [ ] Try and configure AGS
 - [ ] Get and configure Quickshell

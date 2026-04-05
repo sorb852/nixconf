@@ -10,8 +10,8 @@
       shellIntegration.enableZshIntegration = true;
 
       keybindings = {
-        "kitty_mod+>" = "set_background_opacity +0.1";
-        "kitty_mod+<" = "set_background_opacity -0.1";
+        "kitty_mod+a>." = "set_background_opacity +0.1";
+        "kitty_mod+a>," = "set_background_opacity -0.1";
       };
 
       settings = {
@@ -53,7 +53,7 @@
         color15 = self.theme.shade7;
 
         dynamic_background_opacity = true;
-        background_opacity = 0.9;
+        background_opacity = 0.8;
         background_blur = 1;
       };
     };

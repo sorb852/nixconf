@@ -1,3 +1,5 @@
+{ self, ... }:
+
 {
   flake.homeModules.shell =
     { lib, pkgs, ... }:
@@ -5,7 +7,10 @@
       programs.zsh = {
         enable = true;
         enableCompletion = true;
-        autosuggestion.enable = true;
+        autosuggestion = {
+          enable = true;
+          highlight = "fg=${self.theme.shade1}";
+        };
         initContent = ''
           # Move by word
           bindkey "^[[1;5D" backward-word
