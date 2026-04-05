@@ -7,6 +7,7 @@
       imports = [
         self.homeModules.tmux
         self.homeModules.shell
+        self.homeModules.starship
       ];
 
       home.packages = with pkgs; [

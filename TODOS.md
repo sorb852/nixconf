@@ -7,7 +7,7 @@ Things may get *deleted* (seperated into different chunks) or *added* (well new 
 - - [x] Handle theme management
 - - [ ] Well, start themeing
 - - - [x] Theme kitty
-- - - [ ] Configure and Theme prompt (either starship or omp)
+- - - [x] Configure and Theme prompt (either starship or omp)
 - - - [ ] Configure and  Theme fastfetch
 - - - [ ] Theme neovim (prolly gonna be hard)
 - [x] REturn nixivm to the orignal flake

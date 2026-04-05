@@ -5,6 +5,9 @@
       environment.systemPackages = with pkgs; [
         wget
         curl
+
+        # I'm so sure you would atleast use `flake.homeModules.cli`
+        home-manager
       ];
 
       programs = {

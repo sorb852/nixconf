@@ -36,6 +36,12 @@
             titlebar = false;
           };
 
+          output = {
+            "*" = {
+              bg = "${./wallpapers/tuffscapes.png} fill";
+            };
+          };
+
           inherit menu;
           inherit modifier;
           inherit terminal;

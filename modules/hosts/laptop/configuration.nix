@@ -16,13 +16,13 @@ in
 
   flake.nixosConfigurations.Centaur = inputs.nixpkgs.lib.nixosSystem {
     inherit system;
+    specialArgs = { inherit inputs; };
     modules = [
       self.nixosModules.base
       self.nixosModules.gaming
       self.nixosModules.system
       self.nixosModules.Centaur
       self.nixosModules.CentaurHardware
-      # NOTE: idk let's just run two commands
       # {
       #   imports = [
       #     inputs.home-manager.nixosModules.home-manager
@@ -30,12 +30,7 @@ in
       #
       #   home-manager.useGlobalPkgs = true;
       #   home-manager.useUserPackages = true;
-      #
-      #   home-manager.users."sorb852" = {
-      #     imports = [
-      #       self.homeModules."sorb852"
-      #     ];
-      #   };
+      #   home-manager.backupFileExtension = "nix.bak";
       # }
     ];
   };
