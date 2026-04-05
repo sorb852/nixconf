@@ -22,32 +22,25 @@ in
       self.nixosModules.system
       self.nixosModules.Centaur
       self.nixosModules.CentaurHardware
-      # self.homeConfigurations."sorb852"
-      {
-        imports = [
-          inputs.home-manager.nixosModules.home-manager
-        ];
-
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-
-        home-manager.users."sorb852" = {
-          imports = [
-            self.homeModules."sorb852"
-          ];
-        };
-      }
+      # NOTE: idk let's just run two commands
+      # {
+      #   imports = [
+      #     inputs.home-manager.nixosModules.home-manager
+      #   ];
+      #
+      #   home-manager.useGlobalPkgs = true;
+      #   home-manager.useUserPackages = true;
+      #
+      #   home-manager.users."sorb852" = {
+      #     imports = [
+      #       self.homeModules."sorb852"
+      #     ];
+      #   };
+      # }
     ];
   };
 
   flake.homeModules."sorb852" = {
-    imports = [
-      self.homeModules.cli
-      self.homeModules.ctf
-      self.homeModules.sober
-      self.homeModules.desktop
-      self.homeModules.programming
-    ];
     home.stateVersion = "26.05";
     home.username = "sorb852";
     home.homeDirectory = "/home/sorb852";
@@ -56,6 +49,11 @@ in
   flake.homeConfigurations."sorb852" = inputs.home-manager.lib.homeManagerConfiguration {
     pkgs = import inputs.nixpkgs { inherit system; };
     modules = [
+      self.homeModules.cli
+      self.homeModules.ctf
+      self.homeModules.sober
+      self.homeModules.desktop
+      self.homeModules.programming
       self.homeModules."sorb852"
     ];
   };

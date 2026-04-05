@@ -1,0 +1,22 @@
+{
+  "$schema": "./schema.json",
+
+  "meta": {
+    "name": "null",
+    "color_mode": "dark"
+  },
+
+  "color": {
+    "shade0": "#0c101e",
+    "shade7": "#eceef9",
+
+    "accent0": "#212B52",
+    "accent1": "#202735",
+    "accent2": "#919bb1",
+    "accent3": "#afbbd6",
+    "accent4": "#3c465d",
+    "accent5": "#414971",
+    "accent6": "#3c465d",
+    "accent7": "#293256"
+  }
+}

@@ -18,10 +18,6 @@
         syntaxHighlighting.enable = true;
 
         shellAliases = {
-          # Lowkey these two are useless
-          # pioneer-rebuild = "git add ~/dotfiles && sudo nixos-rebuild switch";
-          # pioneer-build = "git add ~/dotfiles && sudo nixos-rebuild build";
-
           # do i even need to do ts??
           # like clear, grep and ls will always be in a system so
           cls = "${lib.getExe' pkgs.toybox "clear"}";
