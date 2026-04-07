@@ -15,10 +15,12 @@
         termshark
         netcat-gnu
         python3
-        (pkgs.python3.withPackages (python-pkgs: [
-          python-pkgs.requests
-          python-pkgs.pycryptodome
-        ]))
+        python313Packages.requests
+        python313Packages.pycryptodome
+        # (pkgs.python3.withPackages (python-pkgs: [
+        #   python-pkgs.requests
+        #   python-pkgs.pycryptodome
+        # ]))
       ];
       programs = {
         lazysql.enable = true;
