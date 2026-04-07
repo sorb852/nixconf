@@ -15,6 +15,8 @@
         curl
         wl-clipboard
         spotdl
+        unzip
+        p7zip
       ];
 
       programs = {

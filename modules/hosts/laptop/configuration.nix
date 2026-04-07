@@ -19,6 +19,7 @@ in
     specialArgs = { inherit inputs; };
     modules = [
       self.nixosModules.base
+      self.nixosModules.flatpak
       self.nixosModules.gaming
       self.nixosModules.system
       self.nixosModules.Centaur
@@ -44,9 +45,10 @@ in
   flake.homeConfigurations."sorb852" = inputs.home-manager.lib.homeManagerConfiguration {
     pkgs = import inputs.nixpkgs { inherit system; };
     modules = [
+      self.homeModules.nixopts
       self.homeModules.cli
       self.homeModules.ctf
-      self.homeModules.sober
+      self.homeModules.flatpakGames
       self.homeModules.desktop
       self.homeModules.programming
       self.homeModules."sorb852"

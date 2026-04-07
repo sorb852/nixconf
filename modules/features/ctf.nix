@@ -1,8 +1,29 @@
 {
   flake.homeModules.ctf =
-    { ... }:
+    { pkgs, ... }:
     {
-      # TODO: Add more stuff
-      programs.lazysql.enable = true;
+      home.packages = with pkgs; [
+        burpsuite
+        ghidra-bin
+        hexedit
+        binwalk
+        john
+        steghide
+        zsteg
+        sqlmap
+        exiftool
+        termshark
+        netcat-gnu
+        python3
+        (pkgs.python3.withPackages (python-pkgs: [
+          python-pkgs.requests
+          python-pkgs.pycryptodome
+        ]))
+      ];
+      programs = {
+        lazysql.enable = true;
+        bun.enable = true; # look yeah i know, but sometimes i just love my fetch
+      };
+
     };
 }
