@@ -7,6 +7,7 @@
       ts_ls.enable = true;
       pyright.enable = true;
       taplo.enable = true;
+      jsonls.enable = true;
     };
   };
 }

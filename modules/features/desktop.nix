@@ -20,6 +20,7 @@
 
       home.packages = with pkgs; [
         pavucontrol
+        krita
       ];
     };
 }

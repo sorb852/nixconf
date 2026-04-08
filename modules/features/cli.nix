@@ -8,6 +8,7 @@
         self.homeModules.tmux
         self.homeModules.shell
         self.homeModules.starship
+        self.homeModules.fastfetch
       ];
 
       home.packages = with pkgs; [

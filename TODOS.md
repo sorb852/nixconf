@@ -8,10 +8,10 @@ Things may get *deleted* (seperated into different chunks) or *added* (well new 
 - - [ ] Well, start themeing
 - - - [x] Theme kitty
 - - - [x] Configure and Theme prompt (either starship or omp)
-- - - [ ] Configure and  Theme fastfetch
+- - - [-] Configure and Theme fastfetch
 - - - [ ] Theme neovim (prolly gonna be hard)
 - [x] REturn nixivm to the orignal flake
 - - [x] Resturcture and maybe implement dentritic (look maybe it could be cool)
-- [ ] Set up ctf tools ~~(or make a seperate flake that I could then use)~~
+- [x] Set up ctf tools ~~(or make a seperate flake that I could then use)~~
 - [ ] Try and configure AGS
 - [ ] Get and configure Quickshell
