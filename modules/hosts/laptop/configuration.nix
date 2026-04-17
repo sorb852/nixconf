@@ -47,7 +47,7 @@ in
     modules = [
       self.homeModules.nixopts
       self.homeModules.cli
-      self.homeModules.ctf
+      # self.homeModules.ctf
       self.homeModules.flatpakGames
       self.homeModules.desktop
       self.homeModules.programming

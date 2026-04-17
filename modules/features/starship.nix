@@ -17,7 +17,7 @@
             "[-<](fg:${self.theme.shade2}) "
             "$directory$sudo"
             " [>-](fg:${self.theme.shade2})"
-            "$git_branch $character "
+            "$git_branch $character"
           ];
           right_format = "$nix_shell";
 
@@ -33,9 +33,9 @@
 
           directory = {
             format = "[$path]($style)[$read_only]($read_only_style)";
-            style = "#ccceda";
+            style = "${self.theme.shade6}";
             read_only = " IOP";
-            read_only_style = "fg:#919bb1";
+            read_only_style = "fg:${self.theme.accent2}";
           };
 
           # Seems to not work.
@@ -43,20 +43,24 @@
             format = " [$symbol]($style)";
             disabled = true;
             symbol = "FA";
-            style = "fg:#919bb1";
+            style = "fg:${self.theme.accent2}";
           };
 
           git_branch = {
             disabled = false;
             format = " [$symbol$branch(:$remote_branch)]($style)";
             symbol = "";
-            style = "fg:#414971";
+            style = "fg:${self.theme.accent5}";
           };
 
           character = {
             disabled = false;
-            success_symbol = "[󰟢](fg:#414971)";
-            error_symbol = "[󰇂](fg:#212B52)";
+            success_symbol = "[󰘧](fg:${self.theme.accent5})"; # 󰟢
+            error_symbol = "[󰇂](fg:${self.theme.accent0})";
+            vimcmd_symbol = "[󰏉](fg:${self.theme.accent5})";
+            vimcmd_visual_symbol = "[󰏉](fg:${self.theme.accent4})";
+            vimcmd_replace_symbol = "[󰏉](fg:${self.theme.accent7})";
+            vimcmd_replace_one_symbol = "[󰏉](fg:${self.theme.accent7})";
           };
 
           nix_shell = {

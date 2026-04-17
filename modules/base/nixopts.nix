@@ -16,4 +16,19 @@
     # idk for steam and some other stuff
     nixpkgs.config.allowUnfree = true;
   };
+
+  # perSystem =
+  #   {
+  #     inputs',
+  #     system,
+  #     ...
+  #   }:
+  #   {
+  #     _module.args.pkgs = import inputs'.nixpkgs {
+  #       inherit system;
+  #       # config = {
+  #       #   allowUnfree = true;
+  #       # };
+  #     };
+  #   };
 }

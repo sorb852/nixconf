@@ -1,4 +1,4 @@
-# { rolling, ... }:
+{ pkgs, ... }:
 
 let
   create_attr_list_mapping =
@@ -19,6 +19,11 @@ let
     };
 in
 {
+  extraPackages = with pkgs; [
+    man
+    man-db
+  ];
+
   plugins.fzf-lua = {
     enable = true;
     # Get the newer release
@@ -29,6 +34,11 @@ in
           k = "<leader>sf";
           a = "files";
           d = "[S]earch [F]iles";
+        }
+        {
+          k = "<leader>sb";
+          a = "builtin";
+          d = "[S]earch [B]uiltins";
         }
         {
           k = "<leader>sg";
@@ -59,6 +69,12 @@ in
           k = "<leader><leader>";
           a = "buffers";
           d = "Search buffers";
+        }
+        {
+          # TODO: STYLE THIS
+          k = "<leader>/";
+          a = "lines";
+          d = "Search buffer lines";
         }
       ]
     );
@@ -94,7 +110,7 @@ in
         end
       '';
       options = {
-        desc = "[S]earch [S]essions";
+        desc = "[s]earch [s]essions";
         silent = true;
       };
     }

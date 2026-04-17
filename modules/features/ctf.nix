@@ -1,31 +1,45 @@
+{ inputs, ... }:
 {
-  flake.homeModules.ctf =
-    { pkgs, ... }:
+  perSystem =
+    { system, pkgs, ... }:
     {
-      home.packages = with pkgs; [
-        burpsuite
-        ghidra-bin
-        hexedit
-        binwalk
-        john
-        steghide
-        zsteg
-        sqlmap
-        exiftool
-        termshark
-        netcat-gnu
-        python3
-        python313Packages.requests
-        python313Packages.pycryptodome
-        # (pkgs.python3.withPackages (python-pkgs: [
-        #   python-pkgs.requests
-        #   python-pkgs.pycryptodome
-        # ]))
-      ];
-      programs = {
-        lazysql.enable = true;
-        bun.enable = true; # look yeah i know, but sometimes i just love my fetch
+      _module.args.pkgs = import inputs.nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
       };
 
+      # NOTE: Use `--no-pure-eval` when running `nix develop`
+      # [source](https://devenv.sh/guides/using-with-flake-parts/#entering-the-shell)
+
+      devenv.shells.ctf = {
+        languages.python = {
+          enable = true;
+          version = "3.13";
+          venv = {
+            enable = true;
+            requirements = ''
+              pwntools
+              pycryptodome
+              requests
+            '';
+          };
+        };
+
+        packages = with pkgs; [
+          burpsuite
+          ghidra-bin
+          hexedit
+          binwalk
+          john
+          steghide
+          zsteg
+          sqlmap
+          exiftool
+          termshark
+          netcat-gnu
+          lazysql
+          bun
+        ];
+      };
     };
 }

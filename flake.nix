@@ -10,10 +10,13 @@
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    devenv.url = "github:cachix/devenv";
+    nixpkgs-python.url = "github:cachix/nixpkgs-python";
+    nixpkgs-python.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
     inputs@{ flake-parts, import-tree, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } (import-tree ./modules);
-  # outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }

@@ -13,8 +13,37 @@
       ];
 
       # Audio
-      services.pipewire.enable = false;
-      services.pulseaudio.enable = true;
+      security.rtkit.enable = true;
+      services.pipewire = {
+        enable = true;
+        alsa.enable = true;
+        alsa.support32Bit = true;
+        pulse.enable = true;
+        wireplumber.extraConfig."10-disable-amplification" = {
+          "monitor.alsa.rules" = [
+            {
+              matches = [ { "node.name" = "~alsa_output.*"; } ];
+              actions = {
+                update-props = {
+                  # This prevents the volume from ever going above 1.0 (100%)
+                  "node.soft-volume" = true;
+                  "volume.max" = 1.0;
+                };
+              };
+            }
+          ];
+        };
+        # extraConfig.pipewire = {
+        #   "stream.properties" = {
+        #     "channelmix.min-volume" = 0.0;
+        #     "channelmix.max-volume" = 1.0;
+        #   };
+        # };
+      };
+      environment.systemPackages = with pkgs; [
+        # pulseaudio
+        wireplumber
+      ];
 
       # Bluetooth
       hardware.bluetooth.enable = true;

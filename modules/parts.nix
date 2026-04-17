@@ -11,5 +11,6 @@
 
   imports = [
     inputs.home-manager.flakeModules.home-manager
+    inputs.devenv.flakeModule
   ];
 }

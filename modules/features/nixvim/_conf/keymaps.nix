@@ -18,7 +18,12 @@ in
     (mapping {
       k = "<leader>bd";
       a = "<cmd>bd<CR>";
-      d = "[B]uffer [D]eletion";
+      d = "[b]uffer [d]eletion";
+    })
+    (mapping {
+      k = "<leader>bD";
+      a = "<cmd>bd|e#<CR>";
+      d = "[b]uffer [D]elete others";
     })
     (mapping {
       k = "<C-s>";
@@ -27,7 +32,7 @@ in
     (mapping {
       k = "<C-w>.";
       a = "<cmd>qa<CR>";
-      d = "Quit project";
+      d = "Quit neovim";
       m = [
         "n"
         "i"
@@ -47,7 +52,18 @@ in
       a = "<cmd>LazyGit<CR>";
       d = "Open Lazy[g]it";
     })
-
+    (mapping {
+      k = "s";
+      a = {
+        __raw = "require('flash').jump";
+      };
+      d = "Flash";
+      m = [
+        "n"
+        "x"
+        "o"
+      ];
+    })
     (mapping {
       k = "<leader>e";
       a = "<cmd>Oil<CR>";
@@ -63,6 +79,28 @@ in
         '';
       };
       d = "[F]ormat file";
+    })
+    (mapping {
+      k = "zR";
+      a = {
+        __raw = ''
+          function()
+            require('ufo').openAllFolds()
+          end
+        '';
+      };
+      d = "Open all folds";
+    })
+    (mapping {
+      k = "zM";
+      a = {
+        __raw = ''
+          function()
+            require('ufo').closeAllFolds()
+          end
+        '';
+      };
+      d = "Close all folds";
     })
   ];
 }

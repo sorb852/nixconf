@@ -7,6 +7,7 @@
       imports = [
         self.homeModules.windowManager
         self.homeModules.terminal
+        self.homeModules.quickshell
       ];
 
       home.sessionVariables = {

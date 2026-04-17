@@ -18,6 +18,11 @@
           # Delete by word
           bindkey "^H" backward-kill-word
           bindkey "^[[4;5~" kill-word
+
+          # TMUX my love
+          if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+            exec tmux
+          fi
         '';
 
         syntaxHighlighting.enable = true;

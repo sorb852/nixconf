@@ -1,3 +1,5 @@
+# TODO: Add some lsp keybinds
+
 {
   plugins.lsp = {
     enable = true;
@@ -8,6 +10,7 @@
       pyright.enable = true;
       taplo.enable = true;
       jsonls.enable = true;
+      qmlls.enable = true;
     };
   };
 }

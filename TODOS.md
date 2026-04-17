@@ -3,7 +3,8 @@
 This is my `todos.md`, really just using it to keep track of what to do for the time being.
 Things may get *deleted* (seperated into different chunks) or *added* (well new wants).
 
-- [ ] GOAL: `Nullscape` rice, complete what you started.
+<!-- yeah. since nullscape is well, null. there isn't much i could go off of, I'm even thinking of making this just a void themed rice -->
+- [ ] GOAL: `Nullscape` ***inspired*** rice, complete what you started.
 - - [x] Handle theme management
 - - [ ] Well, start themeing
 - - - [x] Theme kitty
@@ -13,5 +14,5 @@ Things may get *deleted* (seperated into different chunks) or *added* (well new 
 - [x] REturn nixivm to the orignal flake
 - - [x] Resturcture and maybe implement dentritic (look maybe it could be cool)
 - [x] Set up ctf tools ~~(or make a seperate flake that I could then use)~~
-- [ ] Try and configure AGS
-- [ ] Get and configure Quickshell
+- [ ] ~~Try and configure AGS~~
+- [-] Get and configure Quickshell

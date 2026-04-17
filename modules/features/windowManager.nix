@@ -27,14 +27,36 @@
           };
           floating = {
             criteria = [
-              { class = "Pavucontrol"; }
+              { app_id = "kitty"; }
+              { app_id = "org.pulseaudio.pavucontrol"; }
               { title = "Friends List"; }
               { title = "Steam - Update News"; }
+              { title = "Picture-in-Picture"; }
             ];
           };
+          # Floating center
+          window.commands =
+            let
+              resize_center = app_id: {
+                command = "resize set 50ppt 50ppt, move position center";
+                criteria = {
+                  inherit app_id;
+                };
+              };
+            in
+            [
+              (resize_center "kitty")
+              (resize_center "org.pulseaudio.pavucontrol")
+            ];
           window = {
             titlebar = false;
           };
+
+          # idk man ill js wait
+          # colors = {
+          #   focused = { border = self.theme. };
+          #   unfocused = { };
+          # };
 
           output = {
             "*" = {
@@ -49,6 +71,14 @@
           startup = [
             {
               command = "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway";
+            }
+            {
+              command = ''
+                swayidle -w \
+                	timeout 1800 'swaylock -f' \
+                	timeout 1805 'swaymsg "output * power off"' \
+                		      resume 'swaymsg "output * power on"'
+              '';
             }
           ];
           keybindings = {

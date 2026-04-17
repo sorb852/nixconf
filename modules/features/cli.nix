@@ -18,6 +18,7 @@
         spotdl
         unzip
         p7zip
+        devenv
       ];
 
       programs = {
