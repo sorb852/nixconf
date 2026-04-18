@@ -1,5 +1,3 @@
-# TODO: Add some lsp keybinds
-
 {
   plugins.lsp = {
     enable = true;

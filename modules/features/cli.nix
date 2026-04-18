@@ -7,6 +7,7 @@
       imports = [
         self.homeModules.tmux
         self.homeModules.shell
+        self.homeModules.ranger
         self.homeModules.starship
         self.homeModules.fastfetch
       ];
@@ -58,7 +59,6 @@
 
         htop.enable = true;
         btop.enable = true;
-        ranger.enable = true; # TODO: To config
         yt-dlp.enable = true;
       };
     };

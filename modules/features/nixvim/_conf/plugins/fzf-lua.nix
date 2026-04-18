@@ -76,6 +76,26 @@ in
           a = "lines";
           d = "Search buffer lines";
         }
+        {
+          k = "grr";
+          a = "lsp_references";
+          d = "LSP: Find references";
+        }
+        {
+          k = "gri";
+          a = "lsp_implementations";
+          d = "LSP: Find implementation";
+        }
+        {
+          k = "grd";
+          a = "lsp_definitions";
+          d = "LSP: Find definitions";
+        }
+        {
+          k = "grD";
+          a = "lsp_declarations";
+          d = "LSP: Find declarations";
+        }
       ]
     );
     settings.win-opts = {

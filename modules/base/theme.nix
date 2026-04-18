@@ -40,7 +40,7 @@
             else if res > 255 then
               255
             else
-              0;
+              res;
         in
         fromRGB {
           r = lerp rgb.r;
