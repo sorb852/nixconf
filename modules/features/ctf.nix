@@ -46,10 +46,14 @@
           bun
         ];
 
-        env.LD_LIBRARY_PATH = "${lib.makeLibraryPath [
-          pkgs.glibc
-          pkgs.zlib
-        ]}";
+        env.LD_LIBRARY_PATH = "${lib.makeLibraryPath (
+          with pkgs;
+          [
+            glibc
+            zlib
+            libc
+          ]
+        )}";
 
       };
     };
