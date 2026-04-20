@@ -1,7 +1,12 @@
 { inputs, ... }:
 {
   perSystem =
-    { system, pkgs, ... }:
+    {
+      lib,
+      system,
+      pkgs,
+      ...
+    }:
     {
       _module.args.pkgs = import inputs.nixpkgs {
         inherit system;
@@ -40,6 +45,12 @@
           lazysql
           bun
         ];
+
+        env.LD_LIBRARY_PATH = "${lib.makeLibraryPath [
+          pkgs.glibc
+          pkgs.zlib
+        ]}";
+
       };
     };
 }

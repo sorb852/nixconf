@@ -14,9 +14,10 @@
       LC_TIME = "mn_MN";
     };
 
-    services.xserver.xkb = {
-      layout = "us";
-      variant = "";
+    services.xserver = {
+      xkb.layout = "us,mn";
+      # xkb.layout = "mn";
+      xkb.options = "grp:alt_shift_toggle";
     };
 
     time.timeZone = "Asia/Ulaanbaatar";

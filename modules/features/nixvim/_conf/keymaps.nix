@@ -16,16 +16,6 @@ in
 {
   keymaps = [
     (mapping {
-      k = "<leader>bd";
-      a = "<cmd>bd<CR>";
-      d = "[b]uffer [d]eletion";
-    })
-    (mapping {
-      k = "<leader>bD";
-      a = "<cmd>bd|e#<CR>";
-      d = "[b]uffer [D]elete others";
-    })
-    (mapping {
       k = "<C-s>";
       a = "<cmd>w<CR>";
     })
@@ -68,6 +58,18 @@ in
       k = "<leader>e";
       a = "<cmd>Oil<CR>";
       d = "Open [E]xplorer";
+    })
+
+    (mapping {
+      k = "<leader>bd";
+      a = {
+        __raw = ''
+          function()
+            require('mini.bufremove').delete(0, false)
+          end
+        '';
+      };
+      d = "[b]uffer [d]eletion";
     })
     (mapping {
       k = "<leader>f";

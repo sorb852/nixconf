@@ -4,4 +4,5 @@
   plugins.mini-surround.enable = true;
   plugins.mini-cursorword.enable = true;
   plugins.mini-notify.enable = true;
+  plugins.mini-bufremove.enable = true;
 }

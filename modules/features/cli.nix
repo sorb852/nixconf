@@ -19,6 +19,8 @@
         spotdl
         unzip
         p7zip
+        unrar
+        mpv
         devenv
       ];
 

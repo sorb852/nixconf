@@ -52,6 +52,13 @@
             titlebar = false;
           };
 
+          input = {
+            "*" = {
+              xkb_layout = "us,mn";
+              xkb_options = "grp:alt_shift_toggle";
+            };
+          };
+
           # idk man ill js wait
           # colors = {
           #   focused = { border = self.theme. };
