@@ -26,6 +26,7 @@
               pwntools
               pycryptodome
               requests
+              pyshark
             '';
           };
         };
@@ -46,14 +47,14 @@
           bun
         ];
 
-        env.LD_LIBRARY_PATH = "${lib.makeLibraryPath (
-          with pkgs;
-          [
-            glibc
-            zlib
-            libc
-          ]
-        )}";
+        # env.LD_LIBRARY_PATH = "${lib.makeLibraryPath (
+        #   with pkgs;
+        #   [
+        #     glibc
+        #     zlib
+        #     libc
+        #   ]
+        # )}";
 
       };
     };
