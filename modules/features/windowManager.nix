@@ -11,159 +11,165 @@
       p_brightnessctl = lib.getExe pkgs.brightnessctl;
       p_playerctl = lib.getExe pkgs.playerctl;
 
+      p_awww = lib.getExe' pkgs.awww "awww";
+      p_awww_daemon = lib.getExe' pkgs.awww "awww-daemon";
       p_grim = lib.getExe pkgs.grim;
       p_slurp = lib.getExe pkgs.slurp;
       p_wlcopy = lib.getExe' pkgs.wl-clipboard "wl-copy";
+      p_hyprlock = lib.getExe pkgs.hyprlock;
 
-      modifier = "Mod4";
       fileManager = "${p_kitty} --title ranger -e ${p_ranger}";
       menu = "${p_wmenu_run}";
       terminal = "${p_kitty}";
-      resizeAmount = "10";
     in
     {
-      wayland.windowManager.sway = {
+      wayland.windowManager.hyprland = {
         enable = true;
-        config = {
-          fonts = {
-            names = [ "Anka/Coder Condensed" ];
-            size = 11.0;
+        settings = {
+          monitor = ",preferred,auto,1";
+          ecosystem.enforce_permissions = false;
+          misc = {
+            font_family = "Anka/Coder Condensed";
           };
-          floating = {
-            criteria = [
-              { app_id = "kitty"; }
-              { app_id = "org.pulseaudio.pavucontrol"; }
-              { title = "Friends List"; }
-              { title = "Steam - Update News"; }
-              { title = "Picture-in-Picture"; }
-            ];
+
+          exec-once = [
+            "${p_awww_daemon}"
+            "${p_awww} img ${./wallpapers/tuffscapes.png}"
+          ];
+
+          env = [
+            "XCURSOR_SIZE,24"
+            "HYPRCURSOR_SIZE,24"
+          ];
+
+          general = {
+            border_size = 1;
           };
-          # Floating center
-          window.commands =
-            let
-              resize_center = app_id: {
-                command = "resize set 50ppt 50ppt, move position center";
-                criteria = {
-                  inherit app_id;
-                };
-              };
-            in
-            [
-              (resize_center "kitty")
-              (resize_center "org.pulseaudio.pavucontrol")
-            ];
-          window = {
-            titlebar = false;
-          };
+
+          bezier = [
+            "overshoot, 0.019, 0.747, 0.018, 0.98"
+          ];
+          animation = [
+            "workspaces, 1, 2, overshoot"
+          ];
+
+          windowrule = [
+            "match:class kitty, float on"
+            "match:class kitty, center on"
+            "match:class kitty, size (monitor_w*0.5) (monitor_h*0.5)"
+
+            "match:class org.pulseaudio.pavucontrol, float on"
+            "match:class org.pulseaudio.pavucontrol, center on"
+            "match:class org.pulseaudio.pavucontrol, size (monitor_w*0.5) (monitor_h*0.5)"
+
+            "match:title Friends List, float on"
+            "match:title Steam - Update News, float on"
+            "match:title Picture-in-Picture, float on"
+          ];
 
           input = {
-            "*" = {
-              xkb_layout = "us,mn";
-              xkb_options = "grp:alt_shift_toggle";
-            };
+            kb_layout = "us,mn";
+            kb_options = "grp:alt_shift_toggle";
           };
 
-          # idk man ill js wait
-          # colors = {
-          #   focused = { border = self.theme. };
-          #   unfocused = { };
-          # };
+          bind = [
+            # Spawn
+            "SUPER, return, exec, ${terminal}"
+            "SUPER, space, exec, ${menu}"
+            "SUPER, e, exec, ${fileManager}"
 
-          output = {
-            "*" = {
-              bg = "${./wallpapers/tuffscapes.png} fill";
-            };
-          };
+            # Window properties
+            "ALT, F4, killactive,"
+            "SUPER, v, togglefloating,"
+            "SUPER, f, fullscreen,"
 
-          inherit menu;
-          inherit modifier;
-          inherit terminal;
+            # Window related
+            "SUPER, h, movefocus, l"
+            "SUPER, j, movefocus, u"
+            "SUPER, k, movefocus, d"
+            "SUPER, l, movefocus, r"
+            "SUPER ALT, h, movewindow, l"
+            "SUPER ALT, j, movewindow, u"
+            "SUPER ALT, k, movewindow, d"
+            "SUPER ALT, l, movewindow, r"
+            "SUPER SHIFT, h, resizeactive, -20    0"
+            "SUPER SHIFT, j, resizeactive,   0  -20"
+            "SUPER SHIFT, k, resizeactive,   0   20"
+            "SUPER SHIFT, l, resizeactive,  20    0"
 
-          startup = [
-            {
-              command = "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway";
-            }
-            {
-              command = ''
-                swayidle -w \
-                	timeout 1800 'swaylock -f' \
-                	timeout 1805 'swaymsg "output * power off"' \
-                		      resume 'swaymsg "output * power on"'
-              '';
-            }
-          ];
-          keybindings = {
-            "${modifier}+r" = "reload";
-            "${modifier}+m" =
-              "exec swaynag -t warning -m 'What do you want to do?' -b 'Poweroff' 'systemctl poweroff' -b 'Reboot' 'systemctl reboot'";
-
-            # Window state and some exec binds
-            "${modifier}+e" = "exec ${fileManager}";
-            "${modifier}+v" = "floating toggle";
-            "${modifier}+Return" = "exec ${terminal}";
-            "${modifier}+space" = "exec ${menu}";
-            "Mod1+F4" = "kill";
-            "F11" = "fullscreen toggle";
-
-            # Window movement
-            "${modifier}+h" = "focus left";
-            "${modifier}+l" = "focus right";
-            "${modifier}+k" = "focus up";
-            "${modifier}+j" = "focus down";
-            "${modifier}+Mod1+h" = "move left";
-            "${modifier}+Mod1+l" = "move right";
-            "${modifier}+Mod1+k" = "move up";
-            "${modifier}+Mod1+j" = "move down";
-            "${modifier}+Shift+h" = "resize grow left ${resizeAmount} px";
-            "${modifier}+Shift+l" = "resize grow right ${resizeAmount} px";
-            "${modifier}+Shift+k" = "resize grow up ${resizeAmount} px";
-            "${modifier}+Shift+j" = "resize grow down ${resizeAmount} px";
-
-            # Gotta love me some python
             # Workspace related
-            "${modifier}+1" = "workspace 1";
-            "${modifier}+2" = "workspace 2";
-            "${modifier}+3" = "workspace 3";
-            "${modifier}+4" = "workspace 4";
-            "${modifier}+5" = "workspace 5";
-            "${modifier}+6" = "workspace 6";
-            "${modifier}+7" = "workspace 7";
-            "${modifier}+8" = "workspace 8";
-            "${modifier}+9" = "workspace 9";
-            # So basically move them and then move yourself
-            "${modifier}+Shift+1" = "move container to workspace 1; workspace 1";
-            "${modifier}+Shift+2" = "move container to workspace 2; workspace 2";
-            "${modifier}+Shift+3" = "move container to workspace 3; workspace 3";
-            "${modifier}+Shift+4" = "move container to workspace 4; workspace 4";
-            "${modifier}+Shift+5" = "move container to workspace 5; workspace 5";
-            "${modifier}+Shift+6" = "move container to workspace 6; workspace 6";
-            "${modifier}+Shift+7" = "move container to workspace 7; workspace 7";
-            "${modifier}+Shift+8" = "move container to workspace 8; workspace 8";
-            "${modifier}+Shift+9" = "move container to workspace 9; workspace 9";
+            "SUPER, 1, workspace, 1"
+            "SUPER, 2, workspace, 2"
+            "SUPER, 3, workspace, 3"
+            "SUPER, 4, workspace, 4"
+            "SUPER, 5, workspace, 5"
+            "SUPER, 6, workspace, 6"
+            "SUPER, 7, workspace, 7"
+            "SUPER, 8, workspace, 8"
+            "SUPER, 9, workspace, 9"
+            "SUPER SHIFT, 1, movetoworkspace, 1"
+            "SUPER SHIFT, 2, movetoworkspace, 2"
+            "SUPER SHIFT, 3, movetoworkspace, 3"
+            "SUPER SHIFT, 4, movetoworkspace, 4"
+            "SUPER SHIFT, 5, movetoworkspace, 5"
+            "SUPER SHIFT, 6, movetoworkspace, 6"
+            "SUPER SHIFT, 7, movetoworkspace, 7"
+            "SUPER SHIFT, 8, movetoworkspace, 8"
+            "SUPER SHIFT, 9, movetoworkspace, 9"
 
-            "Print" = "exec grim ~/Pictures/$(date +'%Y-%m-%d-%H%M%S').png";
-            "Shift+Print" = "exec ${p_grim} -g \"$(${p_slurp})\" - | ${p_wlcopy}";
-
-            ## fun fact: this vimjoyer dude is so fucking goated
-            ## this config is at a usable state because of this guy
+            # Screenshotting
+            ", Print, exec, grim ~/Pictures/$(date +'%Y-%m-%d-%H%M%S').png"
+            "Shift, Print, exec, ${p_grim} -g $(${p_slurp}) - | ${p_wlcopy}"
 
             # Audio binds
-            "XF86AudioMute" = "exec ${p_pactl} set-sink-mute @DEFAULT_SINK@ toggle";
-            "XF86AudioLowerVolume" = "exec ${p_pactl} set-sink-volume @DEFAULT_SINK@ -5%";
-            "XF86AudioRaiseVolume" = "exec ${p_pactl} set-sink-volume @DEFAULT_SINK@ +5%";
+            ", XF86AudioMute, exec, ${p_pactl} set-sink-mute @DEFAULT_SINK@ toggle"
+            ", XF86AudioLowerVolume, exec, ${p_pactl} set-sink-volume @DEFAULT_SINK@ -5%"
+            ", XF86AudioRaiseVolume, exec, ${p_pactl} set-sink-volume @DEFAULT_SINK@ +5%"
 
             # Brightness binds
-            "XF86MonBrightnessDown" = "exec ${p_brightnessctl} set 5%-";
-            "XF86MonBrightnessUp" = "exec ${p_brightnessctl} set 5%+";
+            ", XF86MonBrightnessDown, exec, ${p_brightnessctl} set 5%-"
+            ", xF86MonBrightnessUp, exec, ${p_brightnessctl} set 5%+"
 
             # Player
-            "XF86AudioNext" = "exec ${p_playerctl} next";
-            "XF86AudioPause" = "exec ${p_playerctl} play-pause";
-            "XF86AudioPlay" = "exec ${p_playerctl} play-pause";
-            "XF86AudioPrev" = "exec ${p_playerctl} previous";
-          };
+            ", XF86AudioNext, exec, ${p_playerctl} next"
+            ", XF86AudioPause, exec, ${p_playerctl} play-pause"
+            ", XF86AudioPlay, exec, ${p_playerctl} play-pause"
+            ", XF86AudioPrev, exec, ${p_playerctl} previous"
 
-          modes = { };
+            # Hypr related
+            "SUPER, m, exit"
+            "SUPER, r, exec, hyprctl reload"
+          ];
+          # Mouse binds
+          bindm = [
+            # Moving and resizing
+            "SUPER, mouse:272, movewindow"
+            "SUPER, mouse:273, resizewindow"
+          ];
+          # Lid off screen toggle
+          bindl = [
+            ", switch:on:Lid Switch, exec, hyprctl keyword monitor \"e-DP-1, disable\""
+            ", switch:off:Lid Switch, exec, hyprctl keyword monitor \"e-DP-1, enable\""
+          ];
+        };
+      };
+
+      services.hypridle = {
+        enable = true;
+
+        settings = {
+          listener = [
+            {
+              timeout = 240; # 4 min
+              on-timeout = "${p_brightnessctl} set 10%";
+              on-resume = "${p_brightnessctl} -r";
+            }
+            {
+              timeout = 300; # 5 min
+              on-timeout = "hyprctl keyword monitor \"eDP-1, disable\" && ${p_hyprlock}";
+              on-resume = "hyprctl keyword monitor \"eDP-1, enable\"";
+            }
+          ];
         };
       };
     };
