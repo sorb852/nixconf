@@ -11,6 +11,10 @@
       p_brightnessctl = lib.getExe pkgs.brightnessctl;
       p_playerctl = lib.getExe pkgs.playerctl;
 
+      p_grim = lib.getExe pkgs.grim;
+      p_slurp = lib.getExe pkgs.slurp;
+      p_wlcopy = lib.getExe' pkgs.wl-clipboard "wl-copy";
+
       modifier = "Mod4";
       fileManager = "${p_kitty} --title ranger -e ${p_ranger}";
       menu = "${p_wmenu_run}";
@@ -136,6 +140,9 @@
             "${modifier}+Shift+7" = "move container to workspace 7; workspace 7";
             "${modifier}+Shift+8" = "move container to workspace 8; workspace 8";
             "${modifier}+Shift+9" = "move container to workspace 9; workspace 9";
+
+            "Print" = "exec grim ~/Pictures/$(date +'%Y-%m-%d-%H%M%S').png";
+            "Shift+Print" = "exec ${p_grim} -g \"$(${p_slurp})\" - | ${p_wlcopy}";
 
             ## fun fact: this vimjoyer dude is so fucking goated
             ## this config is at a usable state because of this guy

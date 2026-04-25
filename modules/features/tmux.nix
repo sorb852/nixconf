@@ -13,8 +13,8 @@
       terminal = "xterm-kitty";
 
       extraConfig = ''
-        bind 'v' split-window -c "#{pane_current_path}"
-        bind 's' split-window -h -c "#{pane_current_path}"
+        bind 'v' split-window -h -c "#{pane_current_path}"
+        bind 's' split-window -c "#{pane_current_path}"
 
         bind r source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf reloaded!"
 

@@ -4,15 +4,9 @@ This is my `todos.md`, really just using it to keep track of what to do for the 
 Things may get *deleted* (seperated into different chunks) or *added* (well new wants).
 
 <!-- yeah. since nullscape is well, null. there isn't much i could go off of, I'm even thinking of making this just a void themed rice -->
-- [ ] GOAL: `Nullscape` ***inspired*** rice, complete what you started.
-- - [x] Handle theme management
-- - [ ] Well, start themeing
-- - - [x] Theme kitty
-- - - [x] Configure and Theme prompt (either starship or omp)
-- - - [-] Configure and Theme fastfetch
-- - - [ ] Theme neovim (prolly gonna be hard)
-- [x] REturn nixivm to the orignal flake
-- - [x] Resturcture and maybe implement dentritic (look maybe it could be cool)
-- [x] Set up ctf tools ~~(or make a seperate flake that I could then use)~~
-- [ ] ~~Try and configure AGS~~
+<!-- I decided to go with the void theme -->
+- [ ] GOAL: Null themed rice, complete what you started.
+<!-- yeah i know but sway just doesn't feel like it (and no im not trying others, why? really i js wanna get onto the juice) -->
+- [ ] Switch to hyprland
 - [-] Get and configure Quickshell
+- [ ] Theme neovim (prolly gonna be hard)

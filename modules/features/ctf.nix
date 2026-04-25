@@ -36,6 +36,7 @@
           ghidra-bin
           hexedit
           binwalk
+          tshark
           john
           steghide
           zsteg
@@ -45,6 +46,7 @@
           netcat-gnu
           lazysql
           bun
+          nmap
         ];
 
         # env.LD_LIBRARY_PATH = "${lib.makeLibraryPath (
@@ -55,6 +57,7 @@
         #     libc
         #   ]
         # )}";
+        env._JAVA_AWT_WM_NONREPARENTING = 1;
 
       };
     };
