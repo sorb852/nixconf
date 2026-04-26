@@ -22,7 +22,10 @@
       home.packages = with pkgs; [
         pavucontrol
         krita
+        blender
         qbittorrent
+        awww
+        brightnessctl
       ];
     };
 }

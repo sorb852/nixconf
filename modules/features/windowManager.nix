@@ -1,7 +1,8 @@
+{ self, ... }:
+
 {
   flake.homeModules.windowManager =
     { pkgs, lib, ... }:
-
     let
       p_kitty = lib.getExe pkgs.kitty;
       p_ranger = lib.getExe pkgs.ranger;
@@ -21,6 +22,8 @@
       fileManager = "${p_kitty} --title ranger -e ${p_ranger}";
       menu = "${p_wmenu_run}";
       terminal = "${p_kitty}";
+
+      hyprcol = col: "rgb(${builtins.substring 1 6 col})";
     in
     {
       wayland.windowManager.hyprland = {
@@ -29,21 +32,26 @@
           monitor = ",preferred,auto,1";
           ecosystem.enforce_permissions = false;
           misc = {
+            disable_hyprland_logo = false; # cant get called a wait fuck im ricing i am a redditor
+            disable_splash_rendering = false; # cant get called a wait fuck im ricing i am a redditor
+            background_color = "${hyprcol self.theme.shade0}";
             font_family = "Anka/Coder Condensed";
           };
 
           exec-once = [
             "${p_awww_daemon}"
-            "${p_awww} img ${./wallpapers/tuffscapes.png}"
+            "${p_awww} img ${./wallpapers/makeshiftwallpaper.png}"
           ];
 
           env = [
-            "XCURSOR_SIZE,24"
-            "HYPRCURSOR_SIZE,24"
+            "XCURSOR_SIZE,12"
+            "HYPRCURSOR_SIZE,12"
           ];
 
           general = {
             border_size = 1;
+            "col.inactive_border" = "${hyprcol self.theme.shade1}";
+            "col.active_border" = "${hyprcol self.theme.shade3}";
           };
 
           bezier = [
@@ -161,7 +169,7 @@
           listener = [
             {
               timeout = 240; # 4 min
-              on-timeout = "${p_brightnessctl} set 10%";
+              on-timeout = "${p_brightnessctl} -s set 10%";
               on-resume = "${p_brightnessctl} -r";
             }
             {

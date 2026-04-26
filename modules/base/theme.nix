@@ -49,23 +49,41 @@
         };
     in
     {
-      shade0 = "#0c101e";
-      shade1 = "#2c303d";
-      shade2 = "#4c4f5d";
-      shade3 = "#6c6f7c";
-      shade4 = "#8c8f9b";
-      shade5 = "#acafba";
-      shade6 = "#ccceda";
-      shade7 = "#eceef9";
+      # shade0 = "#0c101e";
+      # shade1 = "#2c303d";
+      # shade2 = "#4c4f5d";
+      # shade3 = "#6c6f7c";
+      # shade4 = "#8c8f9b";
+      # shade5 = "#acafba";
+      # shade6 = "#ccceda";
+      # shade7 = "#eceef9";
+      #
+      # accent0 = "#212B52";
+      # accent1 = "#202735";
+      # accent2 = "#919bb1";
+      # accent3 = "#afbbd6";
+      # accent4 = "#3c465d";
+      # accent5 = "#414971";
+      # accent6 = "#3c465d";
+      # accent7 = "#293256";
 
-      accent0 = "#212B52";
-      accent1 = "#202735";
-      accent2 = "#919bb1";
-      accent3 = "#afbbd6";
-      accent4 = "#3c465d";
-      accent5 = "#414971";
-      accent6 = "#3c465d";
-      accent7 = "#293256";
+      shade0 = "#0f0f0f";
+      shade1 = "#2f2f2f";
+      shade2 = "#4f4f4f";
+      shade3 = "#6f6f6f";
+      shade4 = "#909090";
+      shade5 = "#b0b0b0";
+      shade6 = "#d0d0d0";
+      shade7 = "#f0f0f0";
+
+      accent0 = "#303030";
+      accent1 = "#b0b0b0";
+      accent2 = "#888888";
+      accent3 = "#ffffff";
+      accent4 = "#c4c4c4";
+      accent5 = "#7f7f7f";
+      accent6 = "#555555";
+      accent7 = "#5f5f5f";
 
       lib = {
         inherit toRGB fromRGB brighten;

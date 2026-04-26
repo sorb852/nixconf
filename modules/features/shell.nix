@@ -1,40 +1,36 @@
 { self, ... }:
 
 {
-  flake.homeModules.shell =
-    { lib, pkgs, ... }:
-    {
-      programs.zsh = {
+  flake.homeModules.shell = {
+    programs.zsh = {
+      enable = true;
+      enableCompletion = true;
+      autosuggestion = {
         enable = true;
-        enableCompletion = true;
-        autosuggestion = {
-          enable = true;
-          highlight = "fg=${self.theme.shade1}";
-        };
-        initContent = ''
-          # Move by word
-          bindkey "^[[1;5D" backward-word
-          bindkey "^[[1;5C" forward-word
-          # Delete by word
-          bindkey "^H" backward-kill-word
-          bindkey "^[[4;5~" kill-word
+        highlight = "fg=${self.theme.shade1}";
+      };
+      initContent = ''
+        # Move by word
+        bindkey "^[[1;5D" backward-word
+        bindkey "^[[1;5C" forward-word
+        # Delete by word
+        bindkey "^H" backward-kill-word
+        bindkey "^[[4;5~" kill-word
 
-          # TMUX my love
-          if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-            exec tmux
-          fi
-        '';
+        # TMUX my love
+        if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+          exec tmux
+        fi
+      '';
 
-        syntaxHighlighting.enable = true;
+      syntaxHighlighting.enable = true;
 
-        shellAliases = {
-          # do i even need to do ts??
-          # like clear, grep and ls will always be in a system so
-          cls = "${lib.getExe' pkgs.toybox "clear"}";
-          grep = "${lib.getExe pkgs.gnugrep} --color=auto"; # idk ripgrep is there too
-          ls = "${lib.getExe' pkgs.coreutils "ls"} --color=auto"; # yeah good luck using this when theres eza
-          e = "${lib.getExe pkgs.eza}";
-        };
+      shellAliases = {
+        cls = "clear";
+        grep = "grep --color=auto"; # idk ripgrep is there too
+        ls = "ls --color=auto"; # yeah good luck using this when theres eza
+        e = "eza";
       };
     };
+  };
 }
