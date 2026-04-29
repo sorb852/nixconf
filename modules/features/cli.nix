@@ -22,7 +22,14 @@
         unrar
         mpv
         devenv
+        file
+        tldr
       ];
+
+      home.sessionVariables = {
+        EDITOR = "nvim";
+        MANPAGER = "nvim +Man!";
+      };
 
       programs = {
         bat.enable = true;

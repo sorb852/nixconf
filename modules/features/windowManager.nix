@@ -18,6 +18,7 @@
       p_slurp = lib.getExe pkgs.slurp;
       p_wlcopy = lib.getExe' pkgs.wl-clipboard "wl-copy";
       p_hyprlock = lib.getExe pkgs.hyprlock;
+      p_qs = lib.getExe pkgs.quickshell;
 
       fileManager = "${p_kitty} --title ranger -e ${p_ranger}";
       menu = "${p_wmenu_run}";
@@ -41,6 +42,7 @@
           exec-once = [
             "${p_awww_daemon}"
             "${p_awww} img ${./wallpapers/makeshiftwallpaper.png}"
+            "${p_qs}" # Just trust the process for a bit, I mean this is my config so it should get just as dirty as me
           ];
 
           env = [
@@ -130,13 +132,18 @@
             "Shift, Print, exec, ${p_grim} -g $(${p_slurp}) - | ${p_wlcopy}"
 
             # Audio binds
-            ", XF86AudioMute, exec, ${p_pactl} set-sink-mute @DEFAULT_SINK@ toggle"
-            ", XF86AudioLowerVolume, exec, ${p_pactl} set-sink-volume @DEFAULT_SINK@ -5%"
-            ", XF86AudioRaiseVolume, exec, ${p_pactl} set-sink-volume @DEFAULT_SINK@ +5%"
+            # ", XF86AudioMute, exec, ${p_pactl} set-sink-mute @DEFAULT_SINK@ toggle"
+            # ", XF86AudioLowerVolume, exec, ${p_pactl} set-sink-volume @DEFAULT_SINK@ -5%"
+            # ", XF86AudioRaiseVolume, exec, ${p_pactl} set-sink-volume @DEFAULT_SINK@ +5%"
+            ", XF86AudioMute, exec, qs ipc call audio toggle"
+            ", XF86AudioLowerVolume, exec, qs ipc call audio dec 5"
+            ", XF86AudioRaiseVolume, exec, qs ipc call audio inc 5"
 
             # Brightness binds
-            ", XF86MonBrightnessDown, exec, ${p_brightnessctl} set 5%-"
-            ", xF86MonBrightnessUp, exec, ${p_brightnessctl} set 5%+"
+            # ", XF86MonBrightnessDown, exec, ${p_brightnessctl} set 5%-"
+            # ", xF86MonBrightnessUp, exec, ${p_brightnessctl} set 6%+"
+            ", xF86MonBrightnessDown, exec, qs ipc call brightness dec 5"
+            ", xF86MonBrightnessUp, exec, qs ipc call brightness inc 5"
 
             # Player
             ", XF86AudioNext, exec, ${p_playerctl} next"
@@ -156,8 +163,8 @@
           ];
           # Lid off screen toggle
           bindl = [
-            ", switch:on:Lid Switch, exec, hyprctl keyword monitor \"e-DP-1, disable\""
-            ", switch:off:Lid Switch, exec, hyprctl keyword monitor \"e-DP-1, enable\""
+            ", switch:on:Lid Switch, dpms, off"
+            ", switch:off:Lid Switch, dpms, on"
           ];
         };
       };
@@ -174,8 +181,8 @@
             }
             {
               timeout = 300; # 5 min
-              on-timeout = "hyprctl keyword monitor \"eDP-1, disable\" && ${p_hyprlock}";
-              on-resume = "hyprctl keyword monitor \"eDP-1, enable\"";
+              on-timeout = "hyprctl dispatch dpms off && ${p_hyprlock}";
+              on-resume = "hyprctl dispatch dpms on";
             }
           ];
         };

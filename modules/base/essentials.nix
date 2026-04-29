@@ -8,6 +8,10 @@
 
         # I'm so sure you would atleast use `flake.homeModules.cli`
         home-manager
+
+        # Debugging
+        tldr
+        wikiman
       ];
 
       programs = {

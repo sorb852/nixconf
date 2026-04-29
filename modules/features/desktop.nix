@@ -10,10 +10,10 @@
         self.homeModules.quickshell
       ];
 
-      home.sessionVariables = {
-        EDITOR = lib.getExe pkgs.neovim;
-        VISUAL = "$EDITOR";
-      };
+      # home.sessionVariables = {
+      #   EDITOR = lib.getExe pkgs.neovim;
+      #   VISUAL = "$EDITOR";
+      # };
 
       programs = {
         firefox.enable = true;

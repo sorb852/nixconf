@@ -7,7 +7,7 @@
         enable = true;
         settings = rec {
           initial_session = {
-            command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd hyprland";
+            command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd start-hyprland";
             user = "sorb852";
           };
           default_session = initial_session;
@@ -18,7 +18,7 @@
         Type = "idle";
         StandardInput = "tty";
         StandardOutput = "tty";
-        StandardError = "journal"; # Better for debugging
+        StandardError = "journal";
         TTYReset = true;
         TTYVHangup = true;
         TTYVTDisallocate = true;
