@@ -1,3 +1,4 @@
+{ inputs, ... }:
 {
   flake.nixosModules.CentaurHardware =
     {
@@ -7,13 +8,10 @@
       ...
     }:
     {
-      hardware.graphics.enable = true;
-      services.xserver.videoDrivers = [ "nouveau" ];
-      hardware.nvidia.modesetting.enable = false;
-
       # === ORIGINAL HARDWARECONFIG.nix
       imports = [
         (modulesPath + "/installer/scan/not-detected.nix")
+        inputs.nixos-hardware.nixosModules.dell-g3-3579
       ];
 
       boot.initrd.availableKernelModules = [
@@ -51,5 +49,13 @@
 
       nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
       hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+      hardware.graphics = {
+        enable = true;
+        enable32Bit = true;
+      };
+
+      services.xserver.videoDrivers = [ "nvidia" ];
+      hardware.nvidia.modesetting.enable = true;
     };
 }

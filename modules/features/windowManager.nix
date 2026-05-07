@@ -163,8 +163,8 @@
           ];
           # Lid off screen toggle
           bindl = [
-            ", switch:on:Lid Switch, dpms, off"
-            ", switch:off:Lid Switch, dpms, on"
+            ", switch:on:Lid Switch, dpms, on"
+            ", switch:off:Lid Switch, dpms, off"
           ];
         };
       };
@@ -181,8 +181,8 @@
             }
             {
               timeout = 300; # 5 min
-              on-timeout = "hyprctl dispatch dpms off && ${p_hyprlock}";
-              on-resume = "hyprctl dispatch dpms on";
+              on-timeout = "${p_hyprlock} && hyprctl dispatch dpms on";
+              on-resume = "hyprctl dispatch dpms off";
             }
           ];
         };

@@ -11,7 +11,7 @@
 
         # Debugging
         tldr
-        wikiman
+        # wikiman # Seems like i have to like wrap this thing to configure it, and install arch wiki manually (make direvations)
       ];
 
       programs = {

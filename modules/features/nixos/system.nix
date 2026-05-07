@@ -58,6 +58,9 @@
       networking.hostName = "Centaur";
       networking.networkmanager.enable = true;
 
+      # Power management
+      services.upower.enable = true;
+
       # SSH
       services.openssh.enable = true;
 
