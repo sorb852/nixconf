@@ -8,6 +8,7 @@
         self.homeModules.windowManager
         self.homeModules.terminal
         self.homeModules.quickshell
+        self.homeModules.music
       ];
 
       # home.sessionVariables = {
