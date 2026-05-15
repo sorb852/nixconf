@@ -20,6 +20,7 @@
       html
       latex
       yaml
+      svelte
     ];
   };
 }

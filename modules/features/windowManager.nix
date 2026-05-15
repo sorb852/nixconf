@@ -6,7 +6,6 @@
     let
       p_kitty = lib.getExe pkgs.kitty;
       p_ranger = lib.getExe pkgs.ranger;
-      p_wmenu_run = lib.getExe' pkgs.wmenu "wmenu-run";
 
       p_pactl = lib.getExe' pkgs.pulseaudio "pactl";
       p_brightnessctl = lib.getExe pkgs.brightnessctl;
@@ -21,7 +20,7 @@
       p_qs = lib.getExe pkgs.quickshell;
 
       fileManager = "${p_kitty} --title ranger -e ${p_ranger}";
-      menu = "${p_wmenu_run}";
+      menu = "qs ipc call launcher toggle";
       terminal = "${p_kitty}";
 
       hyprcol = col: "rgb(${builtins.substring 1 6 col})";
@@ -173,6 +172,10 @@
         enable = true;
 
         settings = {
+          general = {
+            before_sleep_cmd = "${p_hyprlock}";
+            after_sleep_cmd = "hyprctl dispatch dpms on";
+          };
           listener = [
             {
               timeout = 240; # 4 min
@@ -181,8 +184,12 @@
             }
             {
               timeout = 300; # 5 min
-              on-timeout = "${p_hyprlock} && hyprctl dispatch dpms on";
-              on-resume = "hyprctl dispatch dpms off";
+              on-timeout = "${p_hyprlock}";
+            }
+            {
+              timeout = 330; # 5.5 min
+              on-timeout = "hyprctl dispatch dpms off";
+              on-resume = "hyprctl dispatch dpms on";
             }
           ];
         };

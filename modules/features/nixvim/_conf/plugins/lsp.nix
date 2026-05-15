@@ -9,6 +9,18 @@
       taplo.enable = true;
       jsonls.enable = true;
       qmlls.enable = true;
+      yamlls.enable = true;
+      rust_analyzer = {
+        enable = true;
+        installCargo = true;
+        installRustc = true;
+      };
+      html.enable = true;
+      svelte.enable = true;
+      tailwindcss.enable = true;
     };
   };
+
+  plugins.ts-autotag.enable = true;
+  plugins.emmet.enable = true;
 }

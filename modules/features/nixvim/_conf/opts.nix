@@ -22,7 +22,7 @@
     clipboard = "unnamedplus";
   };
 
-  colorscheme = "gruvbox";
+  colorscheme = "kanagawa-dragon";
   extraPlugins = with pkgs.vimPlugins; [
     gruvbox-nvim
     catppuccin-nvim

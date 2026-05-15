@@ -73,7 +73,7 @@ in
         {
           # TODO: STYLE THIS
           k = "<leader>/";
-          a = "lines";
+          a = "blines";
           d = "Search buffer lines";
         }
         {
@@ -96,12 +96,19 @@ in
           a = "lsp_declarations";
           d = "LSP: Find declarations";
         }
+        {
+          k = "grs";
+          a = "lsp_document_symbols";
+          d = "LSP: Find symbols";
+        }
       ]
     );
-    settings.win-opts = {
-      preview.default = "bat";
-      preview.layout = "vertical";
-      preview.vertical = "down|45%";
+    settings = {
+      winopts = {
+        col = 0.3;
+        row = 0.99;
+        split = "belowright 10new";
+      };
     };
   };
 

@@ -13,32 +13,27 @@
       ];
 
       # Audio
+      security.pam.loginLimits = [
+        {
+          domain = "@audio";
+          item = "rtprio";
+          type = "-";
+          value = "95";
+        }
+        {
+          domain = "@audio";
+          item = "memlock";
+          type = "-";
+          value = "unlimited";
+        }
+      ];
       security.rtkit.enable = true;
       services.pipewire = {
         enable = true;
+        jack.enable = true;
         alsa.enable = true;
         alsa.support32Bit = true;
         pulse.enable = true;
-        wireplumber.extraConfig."10-disable-amplification" = {
-          "monitor.alsa.rules" = [
-            {
-              matches = [ { "node.name" = "~alsa_output.*"; } ];
-              actions = {
-                update-props = {
-                  # This prevents the volume from ever going above 1.0 (100%)
-                  "node.soft-volume" = true;
-                  "volume.max" = 1.0;
-                };
-              };
-            }
-          ];
-        };
-        # extraConfig.pipewire = {
-        #   "stream.properties" = {
-        #     "channelmix.min-volume" = 0.0;
-        #     "channelmix.max-volume" = 1.0;
-        #   };
-        # };
       };
       environment.systemPackages = with pkgs; [
         # pulseaudio
@@ -60,6 +55,15 @@
 
       # Power management
       services.upower.enable = true;
+
+      # as you notice i got a little pissed off
+      #
+      # i swear if that damn mammal touches my pc again
+      # genuinely why does he have to do that
+      # whats with toddlers ragebaiting
+      # cant even ethically ragebait too
+      # genuine bum behaviour
+      services.logind.settings.Login.HandlePowerKey = "ignore";
 
       # SSH
       services.openssh.enable = true;
