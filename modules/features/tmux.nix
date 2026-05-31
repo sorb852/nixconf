@@ -16,6 +16,9 @@
         bind 'v' split-window -h -c "#{pane_current_path}"
         bind 's' split-window -c "#{pane_current_path}"
 
+        bind -T prefix M-h swap-pane -U
+        bind -T prefix M-l swap-pane -D
+
         bind r source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf reloaded!"
 
         bind Tab copy-mode

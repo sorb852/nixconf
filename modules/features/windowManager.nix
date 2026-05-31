@@ -35,7 +35,7 @@
 
           exec-once = [
             "${p_awww_daemon}"
-            "${p_awww} img ${./wallpapers/makeshiftwallpaper.png}"
+            "${p_awww} img ${./assets/makeshiftwallpaper.png}"
             "${p_qs}" # Just trust the process for a bit, I mean this is my config so it should get just as dirty as me
           ];
 
