@@ -11,13 +11,9 @@
         self.homeModules.music
       ];
 
-      # home.sessionVariables = {
-      #   EDITOR = lib.getExe pkgs.neovim;
-      #   VISUAL = "$EDITOR";
-      # };
-
       programs = {
         firefox.enable = true;
+        vesktop.enable = true; # holy shit i can feel the beard growing out of my chin
       };
 
       home.packages = with pkgs; [

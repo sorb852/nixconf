@@ -11,6 +11,8 @@
 
     shiftwidth = 2;
 
+    wrap = false;
+
     signcolumn = "yes";
     cursorline = true;
 
@@ -18,6 +20,9 @@
     foldlevel = 99;
     foldlevelstart = 99;
     foldenable = true;
+
+    exrc = true;
+    secure = true;
 
     clipboard = "unnamedplus";
   };

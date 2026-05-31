@@ -24,15 +24,6 @@ in
       self.nixosModules.system
       self.nixosModules.Centaur
       self.nixosModules.CentaurHardware
-      # {
-      #   imports = [
-      #     inputs.home-manager.nixosModules.home-manager
-      #   ];
-      #
-      #   home-manager.useGlobalPkgs = true;
-      #   home-manager.useUserPackages = true;
-      #   home-manager.backupFileExtension = "nix.bak";
-      # }
     ];
   };
 
@@ -47,7 +38,6 @@ in
     modules = [
       self.homeModules.nixopts
       self.homeModules.cli
-      # self.homeModules.ctf
       self.homeModules.flatpakGames
       self.homeModules.desktop
       self.homeModules.programming

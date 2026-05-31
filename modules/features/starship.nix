@@ -14,16 +14,16 @@
           add_newline = false;
           format = lib.concatStrings [
             "$os "
-            "[-<](fg:${self.theme.shade2}) "
+            "[-<](fg:${self.theme.shade1}) "
             "$directory$sudo"
-            " [>-](fg:${self.theme.shade2})"
+            " [>-](fg:${self.theme.shade1})"
             "$git_branch $character"
           ];
           right_format = "$nix_shell";
 
           os = {
             disabled = false;
-            style = "fg:${self.theme.accent5}";
+            style = "fg:${self.theme.accent3}";
             symbols = {
               NixOS = " ";
               Ubuntu = " ";

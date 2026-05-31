@@ -18,6 +18,7 @@
       html.enable = true;
       svelte.enable = true;
       tailwindcss.enable = true;
+      wgsl_analyzer.enable = true;
     };
   };
 

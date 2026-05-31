@@ -49,41 +49,61 @@
         };
     in
     {
-      # shade0 = "#0c101e";
-      # shade1 = "#2c303d";
-      # shade2 = "#4c4f5d";
-      # shade3 = "#6c6f7c";
-      # shade4 = "#8c8f9b";
-      # shade5 = "#acafba";
-      # shade6 = "#ccceda";
-      # shade7 = "#eceef9";
+      # shade0 = "#0f0f0f";
+      # shade1 = "#2f2f2f";
+      # shade2 = "#4f4f4f";
+      # shade3 = "#6f6f6f";
+      # shade4 = "#909090";
+      # shade5 = "#b0b0b0";
+      # shade6 = "#d0d0d0";
+      # shade7 = "#f0f0f0";
       #
-      # accent0 = "#212B52";
-      # accent1 = "#202735";
-      # accent2 = "#919bb1";
-      # accent3 = "#afbbd6";
-      # accent4 = "#3c465d";
-      # accent5 = "#414971";
-      # accent6 = "#3c465d";
-      # accent7 = "#293256";
+      # accent0 = "#303030";
+      # accent1 = "#b0b0b0";
+      # accent2 = "#888888";
+      # accent3 = "#ffffff";
+      # accent4 = "#c4c4c4";
+      # accent5 = "#7f7f7f";
+      # accent6 = "#555555";
+      # accent7 = "#5f5f5f";
 
-      shade0 = "#0f0f0f";
-      shade1 = "#2f2f2f";
-      shade2 = "#4f4f4f";
-      shade3 = "#6f6f6f";
-      shade4 = "#909090";
-      shade5 = "#b0b0b0";
-      shade6 = "#d0d0d0";
-      shade7 = "#f0f0f0";
+      shade0 = "#0a0a0a";
+      shade1 = "#282828";
+      shade2 = "#464646";
+      shade3 = "#646464";
+      shade4 = "#838383";
+      shade5 = "#a1a1a1";
+      shade6 = "#bfbfbf";
+      shade7 = "#dddddd";
 
-      accent0 = "#303030";
-      accent1 = "#b0b0b0";
-      accent2 = "#888888";
-      accent3 = "#ffffff";
-      accent4 = "#c4c4c4";
-      accent5 = "#7f7f7f";
-      accent6 = "#555555";
-      accent7 = "#5f5f5f";
+      accent0 = "#ffffff";
+      accent1 = "#ffffff";
+      accent2 = "#eeeeee";
+      accent3 = "#cccccc";
+      accent4 = "#b3b3b3";
+      accent5 = "#e0e0e0";
+      accent6 = "#ffffff";
+      accent7 = "#7e7e7e";
+
+      # yeah im definetly abusing this
+      # btw gotten from the goat vimjoyer
+      # shade0 = "#242424";
+      # shade1 = "#3c3836";
+      # shade2 = "#504945";
+      # shade3 = "#665c54";
+      # shade4 = "#bdae93";
+      # shade5 = "#d5c4a1";
+      # shade6 = "#ebdbb2";
+      # shade7 = "#fbf1c7";
+      #
+      # accent0 = "#fb4934";
+      # accent1 = "#fe8019";
+      # accent2 = "#fabd2f";
+      # accent3 = "#b8bb26";
+      # accent4 = "#8ec07c";
+      # accent5 = "#7daea3";
+      # accent6 = "#e089a1";
+      # accent7 = "#f28534";
 
       lib = {
         inherit toRGB fromRGB brighten;

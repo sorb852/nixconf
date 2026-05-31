@@ -19,6 +19,7 @@
         steamtinkerlaunch
         mangohud
         protonup-ng
+        osu-lazer
       ];
 
       # I'm sorry gng

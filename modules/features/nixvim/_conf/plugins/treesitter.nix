@@ -21,6 +21,8 @@
       latex
       yaml
       svelte
+      wgsl_bevy
+      ron
     ];
   };
 }

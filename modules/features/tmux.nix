@@ -26,6 +26,11 @@
 
         set -g allow-rename off
         set -g renumber-windows on
+
+        # Hopefully fixes tmux and kitty icat
+        set -g allow-passthrough on
+        set -ga update-environment TERM
+        set -ga update-environment TERM_PROGRAM
       '';
     };
   };

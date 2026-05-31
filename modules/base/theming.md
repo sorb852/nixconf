@@ -1,9 +1,8 @@
-# Theme utils
+# Theming
 
-## Theming
+## themer.dev
 
-Base16 method
-used by [themer.dev](https://themer.dev)
+Base16 method interpreted from [themer.dev](https://themer.dev)
 
 ### Shades
 
@@ -28,3 +27,30 @@ you can either manually set them or set the two endpoint `shade0` and `shade7` a
 * `accent5` - syntax, ANSI blue
 * `accent6` - syntax, caret/cursor
 * `accent7` - syntax, special, ANSI magenta
+
+## base16
+
+Base16 method interpreted from the original source
+Mostly used for styling
+
+### Shades
+
+* `shade0` - Default Background
+* `shade1` - Lighter Background (Used for status bars, line number and folding marks)
+* `shade2` - Selection Background
+* `shade3` - Comments, Invisibles, Line Highlighting
+* `shade4` - Dark Foreground (Used for status bars)
+* `shade5` - Default Foreground, Caret, Delimiters, Operators
+* `shade6` - Light Foreground (Not often used)
+* `shade7` - Light Background (Not often used)
+
+### Accents
+
+* `accent0` - Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted
+* `accent1` - Integers, Boolean, Constants, XML Attributes, Markup Link Url
+* `accent2` - Classes, Markup Bold, Search Text Background
+* `accent3` - Strings, Inherited Class, Markup Code, Diff Inserted
+* `accent4` - Support, Regular Expressions, Escape Characters, Markup Quotes
+* `accent5` - Functions, Methods, Attribute IDs, Headings
+* `accent6` - Keywords, Storage, Selector, Markup Italic, Diff Changed
+* `accent7` - Deprecated, Opening/Closing Embedded Language Tags, e.g. `<?php ?>`

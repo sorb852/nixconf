@@ -7,20 +7,15 @@
       p_kitty = lib.getExe pkgs.kitty;
       p_ranger = lib.getExe pkgs.ranger;
 
-      p_pactl = lib.getExe' pkgs.pulseaudio "pactl";
       p_brightnessctl = lib.getExe pkgs.brightnessctl;
       p_playerctl = lib.getExe pkgs.playerctl;
 
       p_awww = lib.getExe' pkgs.awww "awww";
       p_awww_daemon = lib.getExe' pkgs.awww "awww-daemon";
-      p_grim = lib.getExe pkgs.grim;
-      p_slurp = lib.getExe pkgs.slurp;
-      p_wlcopy = lib.getExe' pkgs.wl-clipboard "wl-copy";
       p_hyprlock = lib.getExe pkgs.hyprlock;
       p_qs = lib.getExe pkgs.quickshell;
 
       fileManager = "${p_kitty} --title ranger -e ${p_ranger}";
-      menu = "qs ipc call launcher toggle";
       terminal = "${p_kitty}";
 
       hyprcol = col: "rgb(${builtins.substring 1 6 col})";
@@ -84,7 +79,8 @@
           bind = [
             # Spawn
             "SUPER, return, exec, ${terminal}"
-            "SUPER, space, exec, ${menu}"
+            "SUPER, space, exec, qs ipc call launcher toggle"
+            "SUPER, period, exec, qs ipc call emoji toggle"
             "SUPER, e, exec, ${fileManager}"
 
             # Window properties
@@ -127,8 +123,9 @@
             "SUPER SHIFT, 9, movetoworkspace, 9"
 
             # Screenshotting
-            ", Print, exec, grim ~/Pictures/$(date +'%Y-%m-%d-%H%M%S').png"
-            "Shift, Print, exec, ${p_grim} -g $(${p_slurp}) - | ${p_wlcopy}"
+            # ", Print, exec, grim ~/Pictures/$(date +'%Y-%m-%d-%H%M%S').png"
+            # "Shift, Print, exec, ${p_grim} -g $(${p_slurp}) - | ${p_wlcopy}"
+            ", Print, exec, qs ipc call screenshot take"
 
             # Audio binds
             # ", XF86AudioMute, exec, ${p_pactl} set-sink-mute @DEFAULT_SINK@ toggle"
