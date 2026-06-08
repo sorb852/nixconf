@@ -4,19 +4,16 @@
   flake.homeModules.windowManager =
     { pkgs, lib, ... }:
     let
-      p_kitty = lib.getExe pkgs.kitty;
-      p_ranger = lib.getExe pkgs.ranger;
-
-      p_brightnessctl = lib.getExe pkgs.brightnessctl;
+      terminal = "kitty";
+      file_manager = "yazi";
       p_playerctl = lib.getExe pkgs.playerctl;
-
       p_awww = lib.getExe' pkgs.awww "awww";
       p_awww_daemon = lib.getExe' pkgs.awww "awww-daemon";
       p_hyprlock = lib.getExe pkgs.hyprlock;
       p_qs = lib.getExe pkgs.quickshell;
+      p_dbus_activate = lib.getExe' pkgs.dbus "dbus-update-activation-environment";
 
-      fileManager = "${p_kitty} --title ranger -e ${p_ranger}";
-      terminal = "${p_kitty}";
+      fileManager = "${terminal} --title lf -e ${file_manager}";
 
       hyprcol = col: "rgb(${builtins.substring 1 6 col})";
     in
@@ -37,6 +34,7 @@
             "${p_awww_daemon}"
             "${p_awww} img ${./assets/makeshiftwallpaper.png}"
             "${p_qs}" # Just trust the process for a bit, I mean this is my config so it should get just as dirty as me
+            "${p_dbus_activate} --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
           ];
 
           env = [
@@ -79,8 +77,8 @@
           bind = [
             # Spawn
             "SUPER, return, exec, ${terminal}"
-            "SUPER, space, exec, qs ipc call launcher toggle"
-            "SUPER, period, exec, qs ipc call emoji toggle"
+            "SUPER, space, exec, ${p_qs} ipc call launcher toggle"
+            "SUPER, period, exec, ${p_qs} ipc call emoji toggle"
             "SUPER, e, exec, ${fileManager}"
 
             # Window properties
@@ -123,22 +121,15 @@
             "SUPER SHIFT, 9, movetoworkspace, 9"
 
             # Screenshotting
-            # ", Print, exec, grim ~/Pictures/$(date +'%Y-%m-%d-%H%M%S').png"
-            # "Shift, Print, exec, ${p_grim} -g $(${p_slurp}) - | ${p_wlcopy}"
-            ", Print, exec, qs ipc call screenshot take"
+            ", Print, exec, ${p_qs} ipc call screenshot take"
 
             # Audio binds
-            # ", XF86AudioMute, exec, ${p_pactl} set-sink-mute @DEFAULT_SINK@ toggle"
-            # ", XF86AudioLowerVolume, exec, ${p_pactl} set-sink-volume @DEFAULT_SINK@ -5%"
-            # ", XF86AudioRaiseVolume, exec, ${p_pactl} set-sink-volume @DEFAULT_SINK@ +5%"
-            ", XF86AudioMute, exec, qs ipc call audio toggle"
-            ", XF86AudioLowerVolume, exec, qs ipc call audio dec 5"
-            ", XF86AudioRaiseVolume, exec, qs ipc call audio inc 5"
+            ", XF86AudioMute, exec, ${p_qs} ipc call audio toggle"
+            ", XF86AudioLowerVolume, exec, ${p_qs} ipc call audio dec 5"
+            ", XF86AudioRaiseVolume, exec, ${p_qs} ipc call audio inc 5"
 
             # Brightness binds
-            # ", XF86MonBrightnessDown, exec, ${p_brightnessctl} set 5%-"
-            # ", xF86MonBrightnessUp, exec, ${p_brightnessctl} set 6%+"
-            ", xF86MonBrightnessDown, exec, qs ipc call brightness dec 5"
+            ", xF86MonBrightnessDown, exec, ${p_qs} ipc call brightness dec 5"
             ", xF86MonBrightnessUp, exec, qs ipc call brightness inc 5"
 
             # Player
@@ -176,8 +167,8 @@
           listener = [
             {
               timeout = 240; # 4 min
-              on-timeout = "${p_brightnessctl} -s set 10%";
-              on-resume = "${p_brightnessctl} -r";
+              on-timeout = "${p_qs} ipc call brightness set 10";
+              on-resume = "${p_qs} ipc call brightness set 80";
             }
             {
               timeout = 300; # 5 min

@@ -16,6 +16,18 @@
         vesktop.enable = true; # holy shit i can feel the beard growing out of my chin
       };
 
+      home.sessionVariables = {
+        QT_QPA_PLATFORMTHEME = "gtk3";
+      };
+
+      gtk = {
+        enable = true;
+        iconTheme = {
+          name = "Papirus-Dark";
+          package = pkgs.papirus-icon-theme;
+        };
+      };
+
       home.packages = with pkgs; [
         pavucontrol
         krita
@@ -24,6 +36,9 @@
         qbittorrent
         awww
         brightnessctl
+
+        papirus-icon-theme
+        adwaita-icon-theme
       ];
     };
 }

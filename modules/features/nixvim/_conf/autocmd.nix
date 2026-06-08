@@ -1,5 +1,7 @@
 {
   autoGroups = {
+    # handles the cool ass highlight on yank thing
+    # think i got it from lazyvim
     highlight_yank.clear = true;
   };
   autoCmd = [

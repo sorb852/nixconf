@@ -11,18 +11,28 @@
 
     grammarPackages = with pkgs.vimPlugins.nvim-treesitter-parsers; [
       nix
+
       c
       cpp
+
       qmljs
       toml
+      yaml
+
+      gdscript
+
       markdown
       markdown_inline
-      html
       latex
-      yaml
-      svelte
-      wgsl_bevy
       ron
+
+      html
+      css
+      javascript
+      typescript
+      svelte
+
+      wgsl_bevy
     ];
   };
 }

@@ -80,8 +80,8 @@
                 "b": SeekBack,
                 "0": SeekToStart,
 
-                "_": VolumeDown,
-                "+": VolumeUp,
+                "-": VolumeDown,
+                "=": VolumeUp, // look i want both of them to do the same thing without one having shift
 
                 "1": SwitchToTab("Queue"),
                 "2": SwitchToTab("Artists"),
@@ -355,7 +355,8 @@
         	  (kind: Property(Status(RandomV2(on_label: "󰒟", off_label: "󰒟", on_style: (fg: "${self.theme.accent1}"), on_off: (fg: "#5e6387"))))),
         	  (kind: Text(" / "), style: (fg: "${self.theme.shade7}")),
         	  (kind: Property(Status(SingleV2(on_label: "󰎄", off_label: "󰎄", on_style: (fg: "${self.theme.accent2}"), on_off: (fg: "#5e6387"))))),
-        	  (kind: Text(" / Vol at "), style: (fg: "${self.theme.shade7}")),
+        	  // (kind: Text(" / Vol at "), style: (fg: "${self.theme.shade7}")),
+        	  (kind: Text(" / "), style: (fg: "${self.theme.shade7}")),
         	  (kind: Property(Status(Volume)), style: (fg: "${self.theme.accent5}")),
         	  (kind: Text("% "), style: (fg: "${self.theme.accent5}"))
         	],

@@ -7,7 +7,7 @@
       imports = [
         self.homeModules.tmux
         self.homeModules.shell
-        self.homeModules.ranger
+        self.homeModules.yazi
         self.homeModules.starship
         self.homeModules.fastfetch
       ];
@@ -29,6 +29,7 @@
       home.sessionVariables = {
         EDITOR = "nvim";
         MANPAGER = "nvim +Man!";
+        PAGER = "bat";
       };
 
       programs = {

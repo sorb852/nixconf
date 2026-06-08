@@ -67,23 +67,23 @@
       # accent6 = "#555555";
       # accent7 = "#5f5f5f";
 
-      shade0 = "#0a0a0a";
-      shade1 = "#282828";
-      shade2 = "#464646";
-      shade3 = "#646464";
-      shade4 = "#838383";
-      shade5 = "#a1a1a1";
-      shade6 = "#bfbfbf";
-      shade7 = "#dddddd";
-
-      accent0 = "#ffffff";
-      accent1 = "#ffffff";
-      accent2 = "#eeeeee";
-      accent3 = "#cccccc";
-      accent4 = "#b3b3b3";
-      accent5 = "#e0e0e0";
-      accent6 = "#ffffff";
-      accent7 = "#7e7e7e";
+      # shade0 = "#0a0a0a";
+      # shade1 = "#282828";
+      # shade2 = "#464646";
+      # shade3 = "#646464";
+      # shade4 = "#838383";
+      # shade5 = "#a1a1a1";
+      # shade6 = "#bfbfbf";
+      # shade7 = "#dddddd";
+      #
+      # accent0 = "#ffffff";
+      # accent1 = "#ffffff";
+      # accent2 = "#eeeeee";
+      # accent3 = "#cccccc";
+      # accent4 = "#b3b3b3";
+      # accent5 = "#e0e0e0";
+      # accent6 = "#ffffff";
+      # accent7 = "#7e7e7e";
 
       # yeah im definetly abusing this
       # btw gotten from the goat vimjoyer
@@ -104,6 +104,40 @@
       # accent5 = "#7daea3";
       # accent6 = "#e089a1";
       # accent7 = "#f28534";
+
+      shade0 = "#1e1e2e";
+      shade1 = "#33354c";
+      shade2 = "#494c69";
+      shade3 = "#5e6387";
+      shade4 = "#7479a5";
+      shade5 = "#8990c3";
+      shade6 = "#9fa7e0";
+      shade7 = "#b4befe";
+      accent0 = "#f38ba8";
+      accent1 = "#fab387";
+      accent2 = "#f9e2af";
+      accent3 = "#a6e3a1";
+      accent4 = "#94e2d5";
+      accent5 = "#89b4fa";
+      accent6 = "#cba6f7";
+      accent7 = "#f2cdcd";
+
+      # shade0 = "#24273a";
+      # shade1 = "#1e2030";
+      # shade2 = "#363a4f";
+      # shade3 = "#494d64";
+      # shade4 = "#5b6078";
+      # shade5 = "#cad3f5";
+      # shade6 = "#f4dbd6";
+      # shade7 = "#b7bdf8";
+      # accent0 = "#ed8796";
+      # accent1 = "#f5a97f";
+      # accent2 = "#eed49f";
+      # accent3 = "#a6da95";
+      # accent4 = "#8bd5ca";
+      # accent5 = "#8aadf4";
+      # accent6 = "#c6a0f6";
+      # accent7 = "#f0c6c6";
 
       lib = {
         inherit toRGB fromRGB brighten;

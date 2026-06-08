@@ -9,6 +9,7 @@
         pkgs.gcc
         pkgs.rustup
         pkgs.gdb
+        pkgs.godot
         self.packages.${pkgs.system}.neovim
       ];
     };

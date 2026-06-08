@@ -19,9 +19,11 @@
       svelte.enable = true;
       tailwindcss.enable = true;
       wgsl_analyzer.enable = true;
+      # gdscript.enable = true;
     };
   };
 
   plugins.ts-autotag.enable = true;
   plugins.emmet.enable = true;
+  plugins.godot.enable = true;
 }
