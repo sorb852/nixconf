@@ -7,23 +7,23 @@
       imports = [
         self.homeModules.tmux
         self.homeModules.shell
-        self.homeModules.yazi
         self.homeModules.starship
         self.homeModules.fastfetch
       ];
 
-      home.packages = with pkgs; [
-        wget
-        curl
-        wl-clipboard
-        spotdl
-        unzip
-        p7zip
-        unrar
-        mpv
-        devenv
-        file
-        tldr
+      home.packages = [
+        pkgs.wget
+        pkgs.curl
+        pkgs.wl-clipboard
+        pkgs.spotdl
+        pkgs.unzip
+        pkgs.p7zip
+        pkgs.unrar
+        pkgs.mpv
+        pkgs.devenv
+        pkgs.file
+        pkgs.tldr
+        self.packages.${pkgs.system}.yazi
       ];
 
       home.sessionVariables = {
