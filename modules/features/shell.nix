@@ -2,7 +2,7 @@
 
 {
   flake.homeModules.shell =
-    { pkgs, ... }:
+    { pkgs, lib, ... }:
     {
       programs.zsh = {
         enable = true;
@@ -11,6 +11,7 @@
           enable = true;
           highlight = "fg=${self.theme.shade1}";
         };
+
         initContent = ''
           # Move by word
           bindkey "^[[1;5D" backward-word
@@ -18,6 +19,10 @@
           # Delete by word
           bindkey "^H" backward-kill-word
           bindkey "^[[4;5~" kill-word
+
+          # niri my love
+          if [{lib.getExe pkgs.niri} completions zsh)"
+          fi
 
           # TMUX my love
           if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then

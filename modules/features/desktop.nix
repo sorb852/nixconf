@@ -5,7 +5,6 @@
     { pkgs, lib, ... }:
     {
       imports = [
-        self.homeModules.windowManager
         self.homeModules.terminal
         self.homeModules.quickshell
         self.homeModules.music
@@ -28,17 +27,19 @@
         };
       };
 
-      home.packages = with pkgs; [
-        pavucontrol
-        krita
-        renoise
-        blender
-        qbittorrent
-        awww
-        brightnessctl
+      home.packages = [
+        pkgs.pavucontrol
+        pkgs.krita
+        pkgs.renoise
+        pkgs.blender
+        pkgs.qbittorrent
+        pkgs.awww
+        pkgs.brightnessctl
 
-        papirus-icon-theme
-        adwaita-icon-theme
+        pkgs.papirus-icon-theme
+        pkgs.adwaita-icon-theme
+
+        self.packages.${pkgs.system}.niri
       ];
     };
 }

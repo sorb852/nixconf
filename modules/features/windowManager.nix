@@ -1,184 +1,182 @@
-{ self, ... }:
+{ inputs, self, ... }:
 
 {
-  flake.homeModules.windowManager =
-    { pkgs, lib, ... }:
+  perSystem =
+    { lib, pkgs, ... }:
     let
-      terminal = "kitty";
-      file_manager = "yazi";
-      p_playerctl = lib.getExe pkgs.playerctl;
       p_awww = lib.getExe' pkgs.awww "awww";
       p_awww_daemon = lib.getExe' pkgs.awww "awww-daemon";
-      p_hyprlock = lib.getExe pkgs.hyprlock;
-      p_qs = lib.getExe pkgs.quickshell;
-      p_dbus_activate = lib.getExe' pkgs.dbus "dbus-update-activation-environment";
-
-      fileManager = "${terminal} --title lf -e ${file_manager}";
-
-      hyprcol = col: "rgb(${builtins.substring 1 6 col})";
+      p_qs = lib.getExe pkgs.quickshell; # TODO: switch to pkg when wrapped
+      p_playerctl = lib.getExe pkgs.playerctl;
     in
     {
-      wayland.windowManager.hyprland = {
-        enable = true;
+      packages.niri = inputs.wrappers.wrappers.niri.wrap {
+        inherit pkgs;
+        runtimePkgs = [ pkgs.xwayland-satellite ];
         settings = {
-          monitor = ",preferred,auto,1";
-          ecosystem.enforce_permissions = false;
-          misc = {
-            disable_hyprland_logo = false; # cant get called a wait fuck im ricing i am a redditor
-            disable_splash_rendering = false; # cant get called a wait fuck im ricing i am a redditor
-            background_color = "${hyprcol self.theme.shade0}";
-            font_family = "Anka/Coder Condensed";
+          prefer-no-csd = true;
+          layout = {
+            gaps = 16;
+            # always-center-single-column = _: { };
+            background-color = "${self.theme.shade0}";
+            struts = {
+              left = 4;
+              right = 4;
+            };
+            tab-indicator = {
+              off = _: { };
+            };
           };
-
-          exec-once = [
-            "${p_awww_daemon}"
-            "${p_awww} img ${./assets/makeshiftwallpaper.png}"
-            "${p_qs}" # Just trust the process for a bit, I mean this is my config so it should get just as dirty as me
-            "${p_dbus_activate} --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-          ];
-
-          env = [
-            "XCURSOR_SIZE,12"
-            "HYPRCURSOR_SIZE,12"
-          ];
-
-          general = {
-            border_size = 1;
-            "col.inactive_border" = "${hyprcol self.theme.shade1}";
-            "col.active_border" = "${hyprcol self.theme.shade3}";
-          };
-
-          bezier = [
-            "overshoot, 0.019, 0.747, 0.018, 0.98"
-          ];
-          animation = [
-            "workspaces, 1, 2, overshoot"
-          ];
-
-          windowrule = [
-            "match:class kitty, float on"
-            "match:class kitty, center on"
-            "match:class kitty, size (monitor_w*0.5) (monitor_h*0.5)"
-
-            "match:class org.pulseaudio.pavucontrol, float on"
-            "match:class org.pulseaudio.pavucontrol, center on"
-            "match:class org.pulseaudio.pavucontrol, size (monitor_w*0.5) (monitor_h*0.5)"
-
-            "match:title Friends List, float on"
-            "match:title Steam - Update News, float on"
-            "match:title Picture-in-Picture, float on"
-          ];
-
           input = {
-            kb_layout = "us,mn";
-            kb_options = "grp:alt_shift_toggle";
+            keyboard = {
+              xkb = {
+                layout = "us,mn";
+                options = "grp:alt_shift_toggle";
+              };
+            };
           };
-
-          bind = [
-            # Spawn
-            "SUPER, return, exec, ${terminal}"
-            "SUPER, space, exec, ${p_qs} ipc call launcher toggle"
-            "SUPER, period, exec, ${p_qs} ipc call emoji toggle"
-            "SUPER, e, exec, ${fileManager}"
-
-            # Window properties
-            "ALT, F4, killactive,"
-            "SUPER, v, togglefloating,"
-            "SUPER, f, fullscreen,"
-
-            # Window related
-            "SUPER, h, movefocus, l"
-            "SUPER, j, movefocus, u"
-            "SUPER, k, movefocus, d"
-            "SUPER, l, movefocus, r"
-            "SUPER ALT, h, movewindow, l"
-            "SUPER ALT, j, movewindow, u"
-            "SUPER ALT, k, movewindow, d"
-            "SUPER ALT, l, movewindow, r"
-            "SUPER SHIFT, h, resizeactive, -20    0"
-            "SUPER SHIFT, j, resizeactive,   0  -20"
-            "SUPER SHIFT, k, resizeactive,   0   20"
-            "SUPER SHIFT, l, resizeactive,  20    0"
-
-            # Workspace related
-            "SUPER, 1, workspace, 1"
-            "SUPER, 2, workspace, 2"
-            "SUPER, 3, workspace, 3"
-            "SUPER, 4, workspace, 4"
-            "SUPER, 5, workspace, 5"
-            "SUPER, 6, workspace, 6"
-            "SUPER, 7, workspace, 7"
-            "SUPER, 8, workspace, 8"
-            "SUPER, 9, workspace, 9"
-            "SUPER SHIFT, 1, movetoworkspace, 1"
-            "SUPER SHIFT, 2, movetoworkspace, 2"
-            "SUPER SHIFT, 3, movetoworkspace, 3"
-            "SUPER SHIFT, 4, movetoworkspace, 4"
-            "SUPER SHIFT, 5, movetoworkspace, 5"
-            "SUPER SHIFT, 6, movetoworkspace, 6"
-            "SUPER SHIFT, 7, movetoworkspace, 7"
-            "SUPER SHIFT, 8, movetoworkspace, 8"
-            "SUPER SHIFT, 9, movetoworkspace, 9"
-
-            # Screenshotting
-            ", Print, exec, ${p_qs} ipc call screenshot take"
-
-            # Audio binds
-            ", XF86AudioMute, exec, ${p_qs} ipc call audio toggle"
-            ", XF86AudioLowerVolume, exec, ${p_qs} ipc call audio dec 5"
-            ", XF86AudioRaiseVolume, exec, ${p_qs} ipc call audio inc 5"
-
-            # Brightness binds
-            ", xF86MonBrightnessDown, exec, ${p_qs} ipc call brightness dec 5"
-            ", xF86MonBrightnessUp, exec, qs ipc call brightness inc 5"
-
-            # Player
-            ", XF86AudioNext, exec, ${p_playerctl} next"
-            ", XF86AudioPause, exec, ${p_playerctl} play-pause"
-            ", XF86AudioPlay, exec, ${p_playerctl} play-pause"
-            ", XF86AudioPrev, exec, ${p_playerctl} previous"
-
-            # Hypr related
-            "SUPER, m, exit"
-            "SUPER, r, exec, hyprctl reload"
-          ];
-          # Mouse binds
-          bindm = [
-            # Moving and resizing
-            "SUPER, mouse:272, movewindow"
-            "SUPER, mouse:273, resizewindow"
-          ];
-          # Lid off screen toggle
-          bindl = [
-            ", switch:on:Lid Switch, dpms, on"
-            ", switch:off:Lid Switch, dpms, off"
-          ];
-        };
-      };
-
-      services.hypridle = {
-        enable = true;
-
-        settings = {
-          general = {
-            before_sleep_cmd = "${p_hyprlock}";
-            after_sleep_cmd = "hyprctl dispatch dpms on";
+          cursor = {
+            xcursor-theme = "breeze_cursors";
+            xcursor-size = 8;
           };
-          listener = [
-            {
-              timeout = 240; # 4 min
-              on-timeout = "${p_qs} ipc call brightness set 10";
-              on-resume = "${p_qs} ipc call brightness set 80";
-            }
-            {
-              timeout = 300; # 5 min
-              on-timeout = "${p_hyprlock}";
-            }
-            {
-              timeout = 330; # 5.5 min
-              on-timeout = "hyprctl dispatch dpms off";
-              on-resume = "hyprctl dispatch dpms on";
-            }
+          overview = {
+            backdrop-color = "${self.theme.shade0}";
+          };
+          binds = {
+            "Mod+Shift+Slash".show-hotkey-overlay = _: { };
+            "Mod+Return".spawn = "kitty"; # TODO: switch to pkg when kitty is wrapped too
+            "Mod+Space".spawn = [
+              "${p_qs}"
+              "ipc"
+              "call"
+              "launcher"
+              "toggle"
+            ];
+
+            "Mod+O" = _: {
+              props.repeat = false;
+              content.toggle-overview = _: { };
+            };
+
+            "Mod+Q" = _: {
+              props.repeat = false;
+              content.close-window = _: { };
+            };
+
+            "Mod+F".maximize-column = _: { };
+            "Mod+Shift+F".fullscreen-window = _: { };
+            "Mod+C".center-column = _: { };
+
+            "Mod+Minus".set-column-width = "-10%";
+            "Mod+Equal".set-column-width = "+10%";
+            "Mod+Shift+Minus".set-window-height = "-10%";
+            "Mod+Shift+Equal".set-window-height = "+10%";
+
+            "Mod+Left".focus-column-left = _: { };
+            "Mod+Down".focus-window-down = _: { };
+            "Mod+Up".focus-window-up = _: { };
+            "Mod+Right".focus-column-right = _: { };
+            "Mod+H".focus-column-left = _: { };
+            "Mod+J".focus-window-down = _: { };
+            "Mod+K".focus-window-up = _: { };
+            "Mod+L".focus-column-right = _: { };
+
+            "Mod+Ctrl+Left".move-column-left = _: { };
+            "Mod+Ctrl+Down".move-window-down = _: { };
+            "Mod+Ctrl+Up".move-window-up = _: { };
+            "Mod+Ctrl+Right".move-column-right = _: { };
+            "Mod+Ctrl+H".move-column-left = _: { };
+            "Mod+Ctrl+J".move-window-down = _: { };
+            "Mod+Ctrl+K".move-window-up = _: { };
+            "Mod+Ctrl+L".move-column-right = _: { };
+
+            "Mod+U".focus-workspace-down = _: { };
+            "Mod+I".focus-workspace-up = _: { };
+            "Mod+Ctrl+U".move-workspace-down = _: { };
+            "Mod+Ctrl+I".move-workspace-up = _: { };
+
+            "Mod+BracketLeft".consume-or-expel-window-left = _: { };
+            "Mod+BracketRight".consume-or-expel-window-right = _: { };
+
+            "Mod+V".toggle-window-floating = _: { };
+            "Mod+Shift+V".switch-focus-between-floating-and-tiling = _: { };
+
+            "Mod+Shift+E".quit = _: { };
+
+            "Print".spawn = [
+              "${p_qs}"
+              "ipc"
+              "call"
+              "screenshot"
+              "take"
+            ];
+
+            "XF86AudioMute".spawn = [
+              "${p_qs}"
+              "ipc"
+              "call"
+              "audio"
+              "toggle"
+            ];
+            "XF86AudioLowerVolume".spawn = [
+              "${p_qs}"
+              "ipc"
+              "call"
+              "audio"
+              "dec"
+              "5"
+            ];
+            "XF86AudioRaiseVolume".spawn = [
+              "${p_qs}"
+              "ipc"
+              "call"
+              "audio"
+              "inc"
+              "5"
+            ];
+
+            "XF86MonBrightnessDown".spawn = [
+              "${p_qs}"
+              "ipc"
+              "call"
+              "brightness"
+              "dec"
+              "5"
+            ];
+            "XF86MonBrightnessUp".spawn = [
+              "${p_qs}"
+              "ipc"
+              "call"
+              "brightness"
+              "inc"
+              "5"
+            ];
+
+            "XF86AudioNext".spawn = [
+              "${p_playerctl}"
+              "next"
+            ];
+            "XF86AudioPause".spawn = [
+              "${p_playerctl}"
+              "play-pause"
+            ];
+            "XF86AudioPlay".spawn = [
+              "${p_playerctl}"
+              "play-pause"
+            ];
+            "XF86AudioPrev".spawn = [
+              "${p_playerctl}"
+              "previous"
+            ];
+          };
+          spawn-at-startup = [
+            "${p_awww_daemon}"
+            [
+              "${p_awww}"
+              "img"
+              "${./assets/makeshiftwallpaper.png}"
+            ]
+            "${p_qs}" # Just trust the process for a bit, I mean this is my config so it should get just as dirty as me
           ];
         };
       };
