@@ -1,47 +1,38 @@
 { self, ... }:
 
 {
-  flake.homeModules.shell =
-    { pkgs, lib, ... }:
-    {
-      programs.zsh = {
+  flake.nixosModules.shell = {
+    programs.zsh = {
+      enable = true;
+      enableCompletion = true;
+      autosuggestions = {
         enable = true;
-        enableCompletion = true;
-        autosuggestion = {
-          enable = true;
-          highlight = "fg=${self.theme.shade1}";
-        };
+        highlightStyle = "fg=${self.theme.shade3}";
+      };
 
-        initContent = ''
-          # Move by word
-          bindkey "^[[1;5D" backward-word
-          bindkey "^[[1;5C" forward-word
-          # Delete by word
-          bindkey "^H" backward-kill-word
-          bindkey "^[[4;5~" kill-word
+      interactiveShellInit = ''
+        # Move by word
+        bindkey "^[[1;5D" backward-word
+        bindkey "^[[1;5C" forward-word
+        # Delete by word
+        bindkey "^H" backward-kill-word
+        bindkey "^[[4;5~" kill-word
 
-          # niri my love
-          eval "$(${lib.getExe pkgs.niri} completions zsh)"
+        # TMUX my love
+        if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+          exec tmux
+        fi
+      '';
 
-          # TMUX my love
-          if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-            exec tmux
-          fi
-        '';
+      syntaxHighlighting.enable = true;
 
-        siteFunctions = {
-          lfcd = "cd $(lf -print-last-dir $@)";
-        };
-
-        syntaxHighlighting.enable = true;
-
-        shellAliases = {
-          cls = "clear";
-          grep = "grep --color=auto"; # idk ripgrep is there too
-          ls = "ls --color=auto"; # yeah good luck using this when theres eza
-          e = "eza";
-          ds = "devenv shell";
-        };
+      shellAliases = {
+        cls = "clear";
+        grep = "grep --color=auto"; # idk ripgrep is there too
+        ls = "ls --color=auto"; # yeah good luck using this when theres eza
+        e = "eza";
+        ds = "devenv shell";
       };
     };
+  };
 }

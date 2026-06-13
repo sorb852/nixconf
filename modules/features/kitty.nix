@@ -1,18 +1,23 @@
-{ self, ... }:
+{ inputs, self, ... }:
 
 {
-  flake.homeModules.terminal =
+  flake.nixosModules.kitty =
     { pkgs, ... }:
     {
-      programs.kitty = {
+      environment.systemPackages = [ self.packages.${pkgs.system}.kitty ];
+    };
 
-        enable = true;
-        font.name = "Anka/Coder Condensed";
-        font.size = 14;
-        font.package = pkgs.ankacoder-condensed;
-        shellIntegration.enableZshIntegration = true;
+  perSystem =
+    { pkgs, ... }:
+    {
+      packages.kitty = inputs.wrappers.wrappers.kitty.wrap {
+        inherit pkgs;
+        runtimePkgs = [ pkgs.ankacoder-condensed ];
 
         extraConfig = "include ~/.config/kitty/themes/noctalia.conf";
+
+        font.name = "Anka/Coder Condensed";
+        font.size = 14;
 
         keybindings = {
           "kitty_mod+a>." = "set_background_opacity +0.1";

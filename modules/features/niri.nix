@@ -1,6 +1,17 @@
 { inputs, self, ... }:
 
 {
+  flake.nixosModules.niri =
+    { pkgs, lib, ... }:
+    {
+      programs.zsh.interactiveShellInit = ''
+        # niri my love
+        eval "$(${lib.getExe pkgs.niri} completions zsh)"
+      '';
+
+      environment.systemPackages = [ self.packages.${pkgs.system}.niri ];
+    };
+
   perSystem =
     { pkgs, ... }:
     {

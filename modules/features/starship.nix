@@ -1,9 +1,10 @@
 { self, ... }:
 
 {
-  flake.homeModules.starship =
-    { lib, ... }:
+  flake.nixosModules.starship =
+    { pkgs, lib, ... }:
     {
+      programs.zsh.interactiveShellInit = ''eval "$(${lib.getExe pkgs.starship} init zsh)"'';
       programs.starship =
         let
           fallbackPalette = {
@@ -35,7 +36,6 @@
         in
         {
           enable = true;
-          enableZshIntegration = true;
 
           # I know, I could've just fromToml'd this whole thing.
           # But toml and nix don't differ much so I dont care.

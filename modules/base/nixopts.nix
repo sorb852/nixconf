@@ -4,8 +4,6 @@
     # idk for steam and some other stuff
     nixpkgs.config.allowUnfree = true;
 
-    nixpkgs.overlays = [ inputs.millennium.overlays.default ];
-
     # i love flakes i think idk
     # were kind of in an abusive relatiion ship
     # but trust me i can fix er
@@ -13,10 +11,5 @@
       "nix-command"
       "flakes"
     ];
-  };
-
-  flake.homeModules.nixopts = {
-    # idk for steam and some other stuff
-    nixpkgs.config.allowUnfree = true;
   };
 }

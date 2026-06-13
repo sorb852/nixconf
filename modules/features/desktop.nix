@@ -1,32 +1,25 @@
 { self, ... }:
 
 {
-  flake.homeModules.desktop =
-    { pkgs, lib, ... }:
+  flake.nixosModules.desktop =
+    { pkgs, ... }:
     {
+
       imports = [
-        self.homeModules.terminal
-        self.homeModules.music
+        self.nixosModules.music
+        self.nixosModules.niri
+        self.nixosModules.kitty
       ];
 
-      programs = {
-        firefox.enable = true;
-        vesktop.enable = true; # holy shit i can feel the beard growing out of my chin
-      };
-
-      home.sessionVariables = {
+      environment.sessionVariables = {
         QT_QPA_PLATFORMTHEME = "gtk3";
       };
 
-      gtk = {
-        enable = true;
-        iconTheme = {
-          name = "Papirus-Dark";
-          package = pkgs.papirus-icon-theme;
-        };
+      programs = {
+        firefox.enable = true;
       };
 
-      home.packages = [
+      environment.systemPackages = [
         pkgs.pavucontrol
         pkgs.krita
         pkgs.renoise
@@ -37,8 +30,7 @@
 
         pkgs.papirus-icon-theme
         pkgs.adwaita-icon-theme
-
-        self.packages.${pkgs.system}.niri
+        pkgs.vesktop
       ];
     };
 }

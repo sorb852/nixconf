@@ -1,17 +1,34 @@
-{ self, ... }:
+{ inputs, self, ... }:
 
 {
-  flake.homeModules.cli =
+  perSystem =
+    { pkgs, ... }:
+    {
+      packages.eza = inputs.wrappers.lib.wrapPackage {
+        inherit pkgs;
+        package = pkgs.eza;
+        flags = {
+          "--icons" = "always";
+        };
+        flagSeparator = "=";
+      };
+    };
+
+  flake.nixosModules.cli =
     { pkgs, ... }:
     {
       imports = [
-        self.homeModules.tmux
-        self.homeModules.shell
-        self.homeModules.starship
-        self.homeModules.fastfetch
+        self.nixosModules.tmux
+        self.nixosModules.shell
+        self.nixosModules.starship
       ];
 
-      home.packages = [
+      environment.sessionVariables = {
+        PAGER = "${pkgs.bat}";
+      };
+
+      # TODO: ykw js wrapp all these
+      environment.systemPackages = [
         pkgs.wget
         pkgs.curl
         pkgs.wl-clipboard
@@ -23,53 +40,37 @@
         pkgs.devenv
         pkgs.file
         pkgs.tldr
+        pkgs.fastfetch # TODO: Make seperate
+        pkgs.ripgrep
+        pkgs.fd
+        pkgs.jq
+        pkgs.btop
+        pkgs.yt-dlp
         self.packages.${pkgs.system}.yazi
       ];
 
-      home.sessionVariables = {
-        EDITOR = "nvim";
-        MANPAGER = "nvim +Man!";
-        PAGER = "bat";
-      };
-
       programs = {
         bat.enable = true;
-        bun.enable = true;
         fzf = {
-          enable = true;
-          enableZshIntegration = true;
-        };
-        eza = {
-          enable = true;
-          enableZshIntegration = true;
-          extraOptions = [
-            "--icons=always"
-          ];
+          # idk i just now that this enables fzf
+          fuzzyCompletion = true;
+          keybindings = true;
         };
         zoxide = {
           enable = true;
           enableZshIntegration = true;
         };
-        ripgrep.enable = true;
-        jq.enable = true;
-        fd.enable = true;
 
         git = {
           enable = true;
-          settings = {
+          config = {
             user.name = "sorb852";
             user.email = "reeldob34@gmail.com";
             init.defaultBranch = "main";
           };
         };
-        lazygit = {
-          enable = true;
-          enableZshIntegration = true;
-        };
-
+        lazygit.enable = true;
         htop.enable = true;
-        btop.enable = true;
-        yt-dlp.enable = true;
       };
     };
 }
