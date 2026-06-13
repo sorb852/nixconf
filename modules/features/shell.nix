@@ -21,8 +21,7 @@
           bindkey "^[[4;5~" kill-word
 
           # niri my love
-          if [{lib.getExe pkgs.niri} completions zsh)"
-          fi
+          eval "$(${lib.getExe pkgs.niri} completions zsh)"
 
           # TMUX my love
           if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then

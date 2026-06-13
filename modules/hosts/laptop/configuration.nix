@@ -36,6 +36,7 @@ in
   flake.homeConfigurations."sorb852" = inputs.home-manager.lib.homeManagerConfiguration {
     pkgs = import inputs.nixpkgs { inherit system; };
     modules = [
+      self.homeModules.preferences
       self.homeModules.nixopts
       self.homeModules.cli
       self.homeModules.flatpakGames

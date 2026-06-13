@@ -2,17 +2,22 @@
 
 {
   perSystem =
-    { lib, pkgs, ... }:
-    let
-      p_awww = lib.getExe' pkgs.awww "awww";
-      p_awww_daemon = lib.getExe' pkgs.awww "awww-daemon";
-      p_qs = lib.getExe pkgs.quickshell; # TODO: switch to pkg when wrapped
-      p_playerctl = lib.getExe pkgs.playerctl;
-    in
+    { pkgs, ... }:
     {
       packages.niri = inputs.wrappers.wrappers.niri.wrap {
         inherit pkgs;
-        runtimePkgs = [ pkgs.xwayland-satellite ];
+        runtimePkgs = [
+          pkgs.xwayland-satellite
+          pkgs.noctalia-shell
+        ];
+        extraSettings = [
+          {
+            include = [
+              { optional = true; }
+              "~/.config/niri/noctalia.kdl"
+            ];
+          }
+        ];
         settings = {
           prefer-no-csd = true;
           layout = {
@@ -39,144 +44,114 @@
             xcursor-theme = "breeze_cursors";
             xcursor-size = 8;
           };
-          overview = {
-            backdrop-color = "${self.theme.shade0}";
-          };
-          binds = {
-            "Mod+Shift+Slash".show-hotkey-overlay = _: { };
-            "Mod+Return".spawn = "kitty"; # TODO: switch to pkg when kitty is wrapped too
-            "Mod+Space".spawn = [
-              "${p_qs}"
-              "ipc"
-              "call"
-              "launcher"
-              "toggle"
-            ];
 
-            "Mod+O" = _: {
-              props.repeat = false;
-              content.toggle-overview = _: { };
+          window-rule = {
+            geometry-corner-radius = 20;
+            clip-to-geometry = true;
+            background-effect = {
+              blur = true;
+              xray = false;
             };
-
-            "Mod+Q" = _: {
-              props.repeat = false;
-              content.close-window = _: { };
-            };
-
-            "Mod+F".maximize-column = _: { };
-            "Mod+Shift+F".fullscreen-window = _: { };
-            "Mod+C".center-column = _: { };
-
-            "Mod+Minus".set-column-width = "-10%";
-            "Mod+Equal".set-column-width = "+10%";
-            "Mod+Shift+Minus".set-window-height = "-10%";
-            "Mod+Shift+Equal".set-window-height = "+10%";
-
-            "Mod+Left".focus-column-left = _: { };
-            "Mod+Down".focus-window-down = _: { };
-            "Mod+Up".focus-window-up = _: { };
-            "Mod+Right".focus-column-right = _: { };
-            "Mod+H".focus-column-left = _: { };
-            "Mod+J".focus-window-down = _: { };
-            "Mod+K".focus-window-up = _: { };
-            "Mod+L".focus-column-right = _: { };
-
-            "Mod+Ctrl+Left".move-column-left = _: { };
-            "Mod+Ctrl+Down".move-window-down = _: { };
-            "Mod+Ctrl+Up".move-window-up = _: { };
-            "Mod+Ctrl+Right".move-column-right = _: { };
-            "Mod+Ctrl+H".move-column-left = _: { };
-            "Mod+Ctrl+J".move-window-down = _: { };
-            "Mod+Ctrl+K".move-window-up = _: { };
-            "Mod+Ctrl+L".move-column-right = _: { };
-
-            "Mod+U".focus-workspace-down = _: { };
-            "Mod+I".focus-workspace-up = _: { };
-            "Mod+Ctrl+U".move-workspace-down = _: { };
-            "Mod+Ctrl+I".move-workspace-up = _: { };
-
-            "Mod+BracketLeft".consume-or-expel-window-left = _: { };
-            "Mod+BracketRight".consume-or-expel-window-right = _: { };
-
-            "Mod+V".toggle-window-floating = _: { };
-            "Mod+Shift+V".switch-focus-between-floating-and-tiling = _: { };
-
-            "Mod+Shift+E".quit = _: { };
-
-            "Print".spawn = [
-              "${p_qs}"
-              "ipc"
-              "call"
-              "screenshot"
-              "take"
-            ];
-
-            "XF86AudioMute".spawn = [
-              "${p_qs}"
-              "ipc"
-              "call"
-              "audio"
-              "toggle"
-            ];
-            "XF86AudioLowerVolume".spawn = [
-              "${p_qs}"
-              "ipc"
-              "call"
-              "audio"
-              "dec"
-              "5"
-            ];
-            "XF86AudioRaiseVolume".spawn = [
-              "${p_qs}"
-              "ipc"
-              "call"
-              "audio"
-              "inc"
-              "5"
-            ];
-
-            "XF86MonBrightnessDown".spawn = [
-              "${p_qs}"
-              "ipc"
-              "call"
-              "brightness"
-              "dec"
-              "5"
-            ];
-            "XF86MonBrightnessUp".spawn = [
-              "${p_qs}"
-              "ipc"
-              "call"
-              "brightness"
-              "inc"
-              "5"
-            ];
-
-            "XF86AudioNext".spawn = [
-              "${p_playerctl}"
-              "next"
-            ];
-            "XF86AudioPause".spawn = [
-              "${p_playerctl}"
-              "play-pause"
-            ];
-            "XF86AudioPlay".spawn = [
-              "${p_playerctl}"
-              "play-pause"
-            ];
-            "XF86AudioPrev".spawn = [
-              "${p_playerctl}"
-              "previous"
-            ];
           };
+          debug = {
+            honor-xdg-activation-with-invalid-serial = _: { };
+          };
+
+          layer-rules = [
+            {
+              matches = [ { namespace = "^noctalia-overview*"; } ];
+              place-within-backdrop = true;
+            }
+            {
+              matches = [ { namespace = "^noctalia-(background|launcher-overlay|dock)-.*$"; } ];
+              place-within-backdrop = true;
+              background-effect = {
+                xray = false;
+              };
+            }
+          ];
+
+          binds =
+            let
+              noctalia =
+                cmd:
+                [
+                  # TODO: change to package when wrapped
+                  "noctalia-shell"
+                  "ipc"
+                  "call"
+                ]
+                ++ (pkgs.lib.splitString " " cmd);
+            in
+            {
+              "Mod+Shift+Slash".show-hotkey-overlay = _: { };
+              "Mod+Return".spawn = "kitty"; # TODO: switch to pkg when kitty is wrapped too
+              "Mod+Space".spawn = noctalia "launcher toggle";
+              "Mod+Period".spawn = noctalia "launcher emoji"; # really necessary btw
+
+              "Mod+O" = _: {
+                props.repeat = false;
+                content.toggle-overview = _: { };
+              };
+
+              "Mod+Q" = _: {
+                props.repeat = false;
+                content.close-window = _: { };
+              };
+
+              "Mod+F".maximize-column = _: { };
+              "Mod+Shift+F".fullscreen-window = _: { };
+              "Mod+C".center-column = _: { };
+
+              "Mod+Minus".set-column-width = "-10%";
+              "Mod+Equal".set-column-width = "+10%";
+              "Mod+Shift+Minus".set-window-height = "-10%";
+              "Mod+Shift+Equal".set-window-height = "+10%";
+
+              "Mod+Left".focus-column-left = _: { };
+              "Mod+Down".focus-window-down = _: { };
+              "Mod+Up".focus-window-up = _: { };
+              "Mod+Right".focus-column-right = _: { };
+              "Mod+H".focus-column-left = _: { };
+              "Mod+J".focus-window-down = _: { };
+              "Mod+K".focus-window-up = _: { };
+              "Mod+L".focus-column-right = _: { };
+
+              "Mod+Ctrl+Left".move-column-left = _: { };
+              "Mod+Ctrl+Down".move-window-down = _: { };
+              "Mod+Ctrl+Up".move-window-up = _: { };
+              "Mod+Ctrl+Right".move-column-right = _: { };
+              "Mod+Ctrl+H".move-column-left = _: { };
+              "Mod+Ctrl+J".move-window-down = _: { };
+              "Mod+Ctrl+K".move-window-up = _: { };
+              "Mod+Ctrl+L".move-column-right = _: { };
+
+              "Mod+U".focus-workspace-down = _: { };
+              "Mod+I".focus-workspace-up = _: { };
+              "Mod+Ctrl+U".move-workspace-down = _: { };
+              "Mod+Ctrl+I".move-workspace-up = _: { };
+
+              "Mod+BracketLeft".consume-or-expel-window-left = _: { };
+              "Mod+BracketRight".consume-or-expel-window-right = _: { };
+
+              "Mod+V".toggle-window-floating = _: { };
+              "Mod+Shift+V".switch-focus-between-floating-and-tiling = _: { };
+
+              "Mod+Shift+E".quit = _: { };
+
+              "Print".screenshot = _: { };
+              "XF86AudioMute".spawn = noctalia "volume muteOutput";
+              "XF86AudioLowerVolume".spawn = noctalia "volume decrease";
+              "XF86AudioRaiseVolume".spawn = noctalia "volume increase";
+              "XF86MonBrightnessDown".spawn = noctalia "brightness decrease";
+              "XF86MonBrightnessUp".spawn = noctalia "brightness increase";
+              "XF86AudioNext".spawn = noctalia "media next";
+              "XF86AudioPause".spawn = noctalia "media pause";
+              "XF86AudioPlay".spawn = noctalia "media play";
+              "XF86AudioPrev".spawn = noctalia "media previous";
+            };
           spawn-at-startup = [
-            "${p_awww_daemon}"
-            [
-              "${p_awww}"
-              "img"
-              "${./assets/makeshiftwallpaper.png}"
-            ]
-            "${p_qs}" # Just trust the process for a bit, I mean this is my config so it should get just as dirty as me
+            "noctalia-shell"
           ];
         };
       };

@@ -6,7 +6,6 @@
     {
       imports = [
         self.homeModules.terminal
-        self.homeModules.quickshell
         self.homeModules.music
       ];
 

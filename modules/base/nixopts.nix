@@ -1,7 +1,10 @@
+{ inputs, ... }:
 {
   flake.nixosModules.nixopts = {
     # idk for steam and some other stuff
     nixpkgs.config.allowUnfree = true;
+
+    nixpkgs.overlays = [ inputs.millennium.overlays.default ];
 
     # i love flakes i think idk
     # were kind of in an abusive relatiion ship

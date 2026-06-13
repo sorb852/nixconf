@@ -10,6 +10,7 @@
         # gamescope.enable = true;
         steam = {
           enable = true;
+          package = pkgs.millennium-steam;
           gamescopeSession.enable = true;
           protontricks.enable = true;
         };

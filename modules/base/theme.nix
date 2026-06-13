@@ -87,40 +87,40 @@
 
       # yeah im definetly abusing this
       # btw gotten from the goat vimjoyer
-      # shade0 = "#242424";
-      # shade1 = "#3c3836";
-      # shade2 = "#504945";
-      # shade3 = "#665c54";
-      # shade4 = "#bdae93";
-      # shade5 = "#d5c4a1";
-      # shade6 = "#ebdbb2";
-      # shade7 = "#fbf1c7";
-      #
-      # accent0 = "#fb4934";
-      # accent1 = "#fe8019";
-      # accent2 = "#fabd2f";
-      # accent3 = "#b8bb26";
-      # accent4 = "#8ec07c";
-      # accent5 = "#7daea3";
-      # accent6 = "#e089a1";
-      # accent7 = "#f28534";
+      shade0 = "#242424";
+      shade1 = "#3c3836";
+      shade2 = "#504945";
+      shade3 = "#665c54";
+      shade4 = "#bdae93";
+      shade5 = "#d5c4a1";
+      shade6 = "#ebdbb2";
+      shade7 = "#fbf1c7";
 
-      shade0 = "#1e1e2e";
-      shade1 = "#33354c";
-      shade2 = "#494c69";
-      shade3 = "#5e6387";
-      shade4 = "#7479a5";
-      shade5 = "#8990c3";
-      shade6 = "#9fa7e0";
-      shade7 = "#b4befe";
-      accent0 = "#f38ba8";
-      accent1 = "#fab387";
-      accent2 = "#f9e2af";
-      accent3 = "#a6e3a1";
-      accent4 = "#94e2d5";
-      accent5 = "#89b4fa";
-      accent6 = "#cba6f7";
-      accent7 = "#f2cdcd";
+      accent0 = "#fb4934";
+      accent1 = "#fe8019";
+      accent2 = "#fabd2f";
+      accent3 = "#b8bb26";
+      accent4 = "#8ec07c";
+      accent5 = "#7daea3";
+      accent6 = "#e089a1";
+      accent7 = "#f28534";
+
+      # shade0 = "#1e1e2e";
+      # shade1 = "#33354c";
+      # shade2 = "#494c69";
+      # shade3 = "#5e6387";
+      # shade4 = "#7479a5";
+      # shade5 = "#8990c3";
+      # shade6 = "#9fa7e0";
+      # shade7 = "#b4befe";
+      # accent0 = "#f38ba8";
+      # accent1 = "#fab387";
+      # accent2 = "#f9e2af";
+      # accent3 = "#a6e3a1";
+      # accent4 = "#94e2d5";
+      # accent5 = "#89b4fa";
+      # accent6 = "#cba6f7";
+      # accent7 = "#f2cdcd";
 
       # shade0 = "#24273a";
       # shade1 = "#1e2030";
