@@ -6,7 +6,7 @@
     {
       programs.zsh.interactiveShellInit = ''
         # niri my love
-        eval "$(${lib.getExe pkgs.niri} completions zsh)"
+        eval "$(${lib.getExe self.packages.${pkgs.system}.niri} completions zsh)"
       '';
 
       environment.systemPackages = [ self.packages.${pkgs.system}.niri ];
@@ -20,6 +20,7 @@
         runtimePkgs = [
           pkgs.xwayland-satellite
           pkgs.noctalia-shell
+          pkgs.pywalfox-native
         ];
         extraSettings = [
           {
@@ -56,14 +57,20 @@
             xcursor-size = 8;
           };
 
-          window-rule = {
-            geometry-corner-radius = 20;
-            clip-to-geometry = true;
-            background-effect = {
-              blur = true;
-              xray = false;
-            };
-          };
+          window-rules = [
+            {
+              geometry-corner-radius = 20;
+              clip-to-geometry = true;
+              background-effect = {
+                blur = true;
+                xray = false;
+              };
+            }
+            {
+              matches = [ { title = "Picture-in-Picture"; } ];
+              open-floating = true;
+            }
+          ];
           debug = {
             honor-xdg-activation-with-invalid-serial = _: { };
           };
@@ -148,7 +155,7 @@
               "Mod+V".toggle-window-floating = _: { };
               "Mod+Shift+V".switch-focus-between-floating-and-tiling = _: { };
 
-              "Mod+Shift+E".quit = _: { };
+              "Mod+Shift+E".spawn = noctalia "sessionMenu toggle";
 
               "Print".screenshot = _: { };
               "XF86AudioMute".spawn = noctalia "volume muteOutput";
@@ -163,6 +170,10 @@
             };
           spawn-at-startup = [
             "noctalia-shell"
+            [
+              "pywalfox"
+              "start"
+            ]
           ];
         };
       };

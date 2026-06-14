@@ -1,18 +1,19 @@
 { inputs, self, ... }:
 {
   flake.nixosModules.music =
-    { pkgs, lib, ... }:
+    {
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
     {
       services.mpd = {
         enable = true;
         user = "sorb852";
         settings = {
-          music_directory = "/home/sorb852/Music/Library/";
+          music_directory = "/home/${config.services.mpd.user}/Music/Library/";
           audio_output = [
-            {
-              type = "pipewire";
-              name = "Pipewire Sound Server";
-            }
             {
               type = "fifo";
               name = "my_fifo";
@@ -21,6 +22,9 @@
             }
           ];
         };
+      };
+      systemd.services.mpd.environment = {
+        XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.${config.services.mpd.user}.uid}";
       };
 
       systemd.user.services.mpd-mpris = {

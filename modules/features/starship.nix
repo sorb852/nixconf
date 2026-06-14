@@ -2,9 +2,8 @@
 
 {
   flake.nixosModules.starship =
-    { pkgs, lib, ... }:
+    { lib, ... }:
     {
-      programs.zsh.interactiveShellInit = ''eval "$(${lib.getExe pkgs.starship} init zsh)"'';
       programs.starship =
         let
           fallbackPalette = {
