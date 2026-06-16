@@ -15,6 +15,10 @@
           music_directory = "/home/${config.services.mpd.user}/Music/Library/";
           audio_output = [
             {
+              type = "pipewire";
+              name = "Pipewire output";
+            }
+            {
               type = "fifo";
               name = "my_fifo";
               path = "/tmp/mpd.fifo";
@@ -24,7 +28,7 @@
         };
       };
       systemd.services.mpd.environment = {
-        XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.${config.services.mpd.user}.uid}";
+        XDG_RUNTIME_DIR = "/run/user/1000";
       };
 
       systemd.user.services.mpd-mpris = {

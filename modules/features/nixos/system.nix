@@ -4,7 +4,7 @@
 
 {
   flake.nixosModules.system =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
     {
       # Other system related modules
       imports = [
@@ -71,5 +71,13 @@
         ankacoder-condensed
         nerd-fonts.symbols-only
       ];
+
+      # Groups
+      users.users.sorb852 = {
+        extraGroups = [
+          "audio"
+          "networkmanager"
+        ];
+      };
     };
 }

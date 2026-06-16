@@ -22,6 +22,12 @@
         };
       };
 
+      users.users.sorb852 = {
+        extraGroups = [
+          "gamemode"
+        ];
+      };
+
       environment.systemPackages = with pkgs; [
         steamtinkerlaunch
         mangohud

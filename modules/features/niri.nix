@@ -9,18 +9,23 @@
         eval "$(${lib.getExe self.packages.${pkgs.system}.niri} completions zsh)"
       '';
 
+      programs.starship.dynamicTheming = true;
+
       environment.systemPackages = [ self.packages.${pkgs.system}.niri ];
     };
 
   perSystem =
-    { pkgs, ... }:
+    { lib, pkgs, ... }:
     {
       packages.niri = inputs.wrappers.wrappers.niri.wrap {
         inherit pkgs;
         runtimePkgs = [
           pkgs.xwayland-satellite
+
+          # noctalia stuff
+          # TODO: Move
           pkgs.noctalia-shell
-          pkgs.pywalfox-native
+          pkgs.libnotify
         ];
         extraSettings = [
           {
@@ -68,6 +73,10 @@
             }
             {
               matches = [ { title = "Picture-in-Picture"; } ];
+              open-floating = true;
+            }
+            {
+              matches = [ { app-id = "JKPS"; } ];
               open-floating = true;
             }
           ];
@@ -171,7 +180,7 @@
           spawn-at-startup = [
             "noctalia-shell"
             [
-              "pywalfox"
+              "${lib.getExe pkgs.pywalfox-native}"
               "start"
             ]
           ];

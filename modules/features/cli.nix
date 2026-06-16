@@ -15,7 +15,7 @@
     };
 
   flake.nixosModules.cli =
-    { pkgs, ... }:
+    { lib, pkgs, ... }:
     {
       imports = [
         self.nixosModules.tmux
@@ -24,7 +24,7 @@
       ];
 
       environment.sessionVariables = {
-        PAGER = "${pkgs.bat}";
+        PAGER = "${lib.getExe pkgs.bat}";
       };
 
       # TODO: ykw js wrapp all these
@@ -46,6 +46,7 @@
         pkgs.jq
         pkgs.btop
         pkgs.yt-dlp
+        self.packages.${pkgs.system}.eza
         self.packages.${pkgs.system}.yazi
       ];
 
