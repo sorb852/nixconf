@@ -1,0 +1,75 @@
+{ self, ... }:
+
+{
+  flake.nixosModules.starship =
+    { lib, ... }:
+    {
+      programs.starship = {
+        enable = true;
+
+        # I know, I could've just fromToml'd this whole thing.
+        # But toml and nix don't differ much so I dont care.
+        settings = {
+          add_newline = false;
+          format = lib.concatStrings [
+            "$os "
+            "[-<](fg:${self.theme.shade3}) "
+            "$directory$sudo"
+            " [>-](fg:${self.theme.shade3})"
+            "$git_branch $character"
+          ];
+          right_format = "$nix_shell";
+
+          os = {
+            disabled = false;
+            style = "fg:${self.theme.accent3}";
+            symbols = {
+              NixOS = " ";
+              Ubuntu = " ";
+              Windows = " ";
+            };
+          };
+
+          directory = {
+            format = "[$path]($style)[$read_only]($read_only_style)";
+            style = "${self.theme.shade6}";
+            read_only = " ";
+            read_only_style = "fg:${self.theme.accent1}";
+          };
+
+          # Seems to not work.
+          sudo = {
+            format = " [$symbol]($style)";
+            disabled = true;
+            symbol = "󱅞";
+            style = "fg:${self.theme.accent1}";
+          };
+
+          git_branch = {
+            disabled = false;
+            format = " [$symbol$branch(:$remote_branch)]($style)";
+            symbol = "";
+            style = "fg:${self.theme.accent4}";
+          };
+
+          character = {
+            disabled = false;
+            success_symbol = "[󰘧](fg:${self.theme.accent5})";
+            error_symbol = "[󰇂](fg:${self.theme.accent0})";
+            vimcmd_symbol = "[󰏉](fg:${self.theme.accent5})";
+            vimcmd_visual_symbol = "[󰏉](fg:${self.theme.accent4})";
+            vimcmd_replace_symbol = "[󰏉](fg:${self.theme.accent7})";
+            vimcmd_replace_one_symbol = "[󰏉](fg:${self.theme.accent7})";
+          };
+
+          nix_shell = {
+            disabled = true;
+            heuristic = true;
+            format = " [$symbol$state $name]($style)";
+            symbol = "󰼪 ";
+            style = "fg:${self.theme.shade6}";
+          };
+        };
+      };
+    };
+}

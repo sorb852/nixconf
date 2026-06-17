@@ -4,7 +4,7 @@
 
 {
   flake.nixosModules.system =
-    { config, pkgs, ... }:
+    { pkgs, ... }:
     {
       # Other system related modules
       imports = [

@@ -49,78 +49,96 @@
         };
     in
     {
-      # shade0 = "#0f0f0f";
-      # shade1 = "#2f2f2f";
-      # shade2 = "#4f4f4f";
-      # shade3 = "#6f6f6f";
-      # shade4 = "#909090";
-      # shade5 = "#b0b0b0";
-      # shade6 = "#d0d0d0";
-      # shade7 = "#f0f0f0";
-      #
-      # accent0 = "#303030";
-      # accent1 = "#b0b0b0";
-      # accent2 = "#888888";
-      # accent3 = "#ffffff";
-      # accent4 = "#c4c4c4";
-      # accent5 = "#7f7f7f";
-      # accent6 = "#555555";
-      # accent7 = "#5f5f5f";
+      # js use matugen lowk
+      # look i will get a dark theme but the one we have rn is SO ASS
+      # this mogs anyways
+      # shade0 = "#dadee9";
+      # shade1 = "#bcc1cc";
+      # shade2 = "#9fa4af";
+      # shade3 = "#828792";
+      # shade4 = "#656976";
+      # shade5 = "#484c59";
+      # shade6 = "#2a2f3c";
+      # shade7 = "#0d121f";
+      # accent0 = "#69738c";
+      # accent1 = "#525b72";
+      # accent2 = "#464f65";
+      # accent3 = "#929cb0";
+      # accent4 = "#3f485d";
+      # accent5 = "#3a4356";
+      # accent6 = "#363e51";
+      # accent7 = "#30374b";
 
-      # shade0 = "#0a0a0a";
-      # shade1 = "#282828";
-      # shade2 = "#464646";
-      # shade3 = "#646464";
-      # shade4 = "#838383";
-      # shade5 = "#a1a1a1";
-      # shade6 = "#bfbfbf";
-      # shade7 = "#dddddd";
-      #
-      # accent0 = "#ffffff";
-      # accent1 = "#ffffff";
-      # accent2 = "#eeeeee";
-      # accent3 = "#cccccc";
-      # accent4 = "#b3b3b3";
-      # accent5 = "#e0e0e0";
-      # accent6 = "#ffffff";
-      # accent7 = "#7e7e7e";
+      # shade0 = "#0d121f";
+      # shade1 = "#2a2f3c";
+      # shade2 = "#484c59";
+      # shade3 = "#656976";
+      # shade4 = "#828792";
+      # shade5 = "#9fa4af";
+      # shade6 = "#bcc1cc";
+      # shade7 = "#dadee9";
+      # accent0 = "#69738c";
+      # accent1 = "#525b72";
+      # accent2 = "#464f65";
+      # accent3 = "#929cb0";
+      # accent4 = "#3f485d";
+      # accent5 = "#3a4356";
+      # accent6 = "#363e51";
+      # accent7 = "#30374b";
+
+      # potential 👀👀
+      # base00= "#222633"
+      # base01= "#434754"
+      # base02= "#646975"
+      # base03= "#858a96"
+      # base04= "#a7acb7"
+      # base05= "#c8cdd8"
+      # base06= "#d0d5de"
+      # base07= "#d8dce4"
+      # base08= "#567c9d"
+      # base09= "#959ba4"
+      # base0A= "#9493a6"
+      # base0B= "#6b77a0"
+      # base0C= "#68789b"
+      # base0D= "#6778a1"
+      # base0E= "#6b7898"
+      # base0F= "#6c7898"
 
       # yeah im definetly abusing this
       # btw gotten from the goat vimjoyer
-      shade0 = "#242424";
-      shade1 = "#3c3836";
-      shade2 = "#504945";
-      shade3 = "#665c54";
-      shade4 = "#bdae93";
-      shade5 = "#d5c4a1";
-      shade6 = "#ebdbb2";
-      shade7 = "#fbf1c7";
+      # shade0 = "#242424";
+      # shade1 = "#3c3836";
+      # shade2 = "#504945";
+      # shade3 = "#665c54";
+      # shade4 = "#bdae93";
+      # shade5 = "#d5c4a1";
+      # shade6 = "#ebdbb2";
+      # shade7 = "#fbf1c7";
+      # accent0 = "#fb4934";
+      # accent1 = "#fe8019";
+      # accent2 = "#fabd2f";
+      # accent3 = "#b8bb26";
+      # accent4 = "#8ec07c";
+      # accent5 = "#7daea3";
+      # accent6 = "#e089a1";
+      # accent7 = "#f28534";
 
-      accent0 = "#fb4934";
-      accent1 = "#fe8019";
-      accent2 = "#fabd2f";
-      accent3 = "#b8bb26";
-      accent4 = "#8ec07c";
-      accent5 = "#7daea3";
-      accent6 = "#e089a1";
-      accent7 = "#f28534";
-
-      # shade0 = "#1e1e2e";
-      # shade1 = "#33354c";
-      # shade2 = "#494c69";
-      # shade3 = "#5e6387";
-      # shade4 = "#7479a5";
-      # shade5 = "#8990c3";
-      # shade6 = "#9fa7e0";
-      # shade7 = "#b4befe";
-      # accent0 = "#f38ba8";
-      # accent1 = "#fab387";
-      # accent2 = "#f9e2af";
-      # accent3 = "#a6e3a1";
-      # accent4 = "#94e2d5";
-      # accent5 = "#89b4fa";
-      # accent6 = "#cba6f7";
-      # accent7 = "#f2cdcd";
+      shade0 = "#1e1e2e";
+      shade1 = "#33354c";
+      shade2 = "#494c69";
+      shade3 = "#5e6387";
+      shade4 = "#7479a5";
+      shade5 = "#8990c3";
+      shade6 = "#9fa7e0";
+      shade7 = "#b4befe";
+      accent0 = "#f38ba8";
+      accent1 = "#fab387";
+      accent2 = "#f9e2af";
+      accent3 = "#a6e3a1";
+      accent4 = "#94e2d5";
+      accent5 = "#89b4fa";
+      accent6 = "#cba6f7";
+      accent7 = "#f2cdcd";
 
       # shade0 = "#24273a";
       # shade1 = "#1e2030";

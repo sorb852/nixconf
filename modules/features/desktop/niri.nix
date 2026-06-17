@@ -9,8 +9,6 @@
         eval "$(${lib.getExe self.packages.${pkgs.system}.niri} completions zsh)"
       '';
 
-      programs.starship.dynamicTheming = true;
-
       environment.systemPackages = [ self.packages.${pkgs.system}.niri ];
     };
 
@@ -21,32 +19,50 @@
         inherit pkgs;
         runtimePkgs = [
           pkgs.xwayland-satellite
-
-          # noctalia stuff
-          # TODO: Move
-          pkgs.noctalia-shell
-          pkgs.libnotify
-        ];
-        extraSettings = [
-          {
-            include = [
-              { optional = true; }
-              "~/.config/niri/noctalia.kdl"
-            ];
-          }
+          self.packages.${pkgs.system}.noctalia
         ];
         settings = {
           prefer-no-csd = true;
           layout = {
-            gaps = 16;
-            # always-center-single-column = _: { };
+            gaps = 4;
             background-color = "${self.theme.shade0}";
             struts = {
-              left = 4;
-              right = 4;
+              left = 12;
             };
             tab-indicator = {
               off = _: { };
+              active-color = "${self.theme.accent5}";
+              inactive-color = "${self.theme.accent4}";
+              urgent-color = "${self.theme.accent0}";
+            };
+
+            focus-ring = {
+              width = 1;
+              active-color = "${self.theme.accent5}";
+              inactive-color = "${self.theme.shade3}";
+              urgent-color = "${self.theme.accent0}";
+            };
+
+            border = {
+              width = 1;
+              active-color = "${self.theme.accent5}";
+              inactive-color = "${self.theme.shade3}";
+              urgent-color = "${self.theme.accent0}";
+            };
+
+            shadow = {
+              color = "#00000070";
+            };
+
+            insert-hint = {
+              color = "${self.theme.accent5}80";
+            };
+          };
+
+          recent-windows = {
+            highlight = {
+              active-color = "${self.theme.accent5}";
+              urgent-color = "${self.theme.accent0}";
             };
           };
           input = {
@@ -112,7 +128,7 @@
             in
             {
               "Mod+Shift+Slash".show-hotkey-overlay = _: { };
-              "Mod+Return".spawn = "kitty"; # TODO: switch to pkg when kitty is wrapped too
+              "Mod+Return".spawn = "${lib.getExe self.packages.${pkgs.system}.kitty}";
               "Mod+Space".spawn = noctalia "launcher toggle";
               "Mod+Period".spawn = noctalia "launcher emoji"; # really necessary btw
 
@@ -180,8 +196,12 @@
           spawn-at-startup = [
             "noctalia-shell"
             [
-              "${lib.getExe pkgs.pywalfox-native}"
-              "start"
+              "steam"
+              "-silent"
+            ]
+            [
+              "vesktop"
+              "-m"
             ]
           ];
         };

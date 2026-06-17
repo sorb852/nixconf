@@ -1,5 +1,3 @@
-{ pkgs, ... }:
-
 {
   editorconfig.enable = true;
 
@@ -26,16 +24,6 @@
 
     clipboard = "unnamedplus";
   };
-
-  colorscheme = "catppuccin-mocha";
-  extraPlugins = with pkgs.vimPlugins; [
-    gruvbox-nvim
-    catppuccin-nvim
-    kanagawa-nvim
-    rose-pine
-    tokyonight-nvim
-    vague-nvim
-  ];
 
   # Not found for some reason???
   # Like it's on the docs tf they on

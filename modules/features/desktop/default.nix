@@ -11,11 +11,13 @@
         self.nixosModules.kitty
       ];
 
+      # TODO: Also style GTK and QT
       environment.sessionVariables = {
         QT_QPA_PLATFORMTHEME = "gtk3";
       };
 
       programs = {
+        # TODO: Style
         firefox.enable = true;
       };
 
@@ -30,6 +32,7 @@
 
         pkgs.papirus-icon-theme
         pkgs.adwaita-icon-theme
+        # TODO: STYLE
         pkgs.vesktop
       ];
     };

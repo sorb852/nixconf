@@ -25,6 +25,7 @@
         module = ./_conf;
         extraSpecialArgs = {
           inherit inputs;
+          inherit self;
         };
       };
       nvim = nixvim'.makeNixvimWithModule nixvimModule;

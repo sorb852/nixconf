@@ -47,7 +47,7 @@
         self.packages.${pkgs.system}.rmpc
 
         # essential btw
-        cava
+        self.packages.${pkgs.system}.cava
         mpc
       ];
     };
@@ -55,6 +55,32 @@
   perSystem =
     { pkgs, ... }:
     {
+      packages.cava = inputs.wrappers.wrappers.cava.wrap {
+        inherit pkgs;
+        settings = {
+          color = {
+            gradient = 1;
+            gradient_color_1 = "'#ed8796'";
+            gradient_color_2 = "'#f5a97f'";
+            gradient_color_3 = "'#eed49f'";
+            gradient_color_4 = "'#a6da95'";
+            gradient_color_5 = "'#8bd5ca'";
+            gradient_color_6 = "'#8aadf4'";
+            gradient_color_7 = "'#c6a0f6'";
+            gradient_color_8 = "'#f0c6c6'";
+
+            horizontal_gradient = 1;
+            horizontal_gradient_color_1 = "'#ed8796'";
+            horizontal_gradient_color_2 = "'#f5a97f'";
+            horizontal_gradient_color_3 = "'#eed49f'";
+            horizontal_gradient_color_4 = "'#a6da95'";
+            horizontal_gradient_color_5 = "'#8bd5ca'";
+            horizontal_gradient_color_6 = "'#8aadf4'";
+            horizontal_gradient_color_7 = "'#c6a0f6'";
+            horizontal_gradient_color_8 = "'#f0c6c6'";
+          };
+        };
+      };
       packages.rmpc = inputs.wrappers.lib.wrapPackage (
         { ... }:
         let

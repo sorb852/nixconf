@@ -16,6 +16,7 @@
 
         steam = {
           enable = true;
+          # TODO: get steam millennium colors
           package = pkgs.millennium-steam;
           gamescopeSession.enable = true;
           protontricks.enable = true;

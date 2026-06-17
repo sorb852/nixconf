@@ -14,8 +14,6 @@
         inherit pkgs;
         runtimePkgs = [ pkgs.ankacoder-condensed ];
 
-        extraConfig = "include ~/.config/kitty/themes/noctalia.conf";
-
         font.name = "Anka/Coder Condensed";
         font.size = 14;
 
@@ -32,6 +30,8 @@
           cursor_shape = "block";
           cursor_trail = 1;
           cursor_trail_decay = "0.1 0.4";
+
+          window_padding_width = 2;
 
           scrollbar_handle_color = self.theme.shade1;
 
