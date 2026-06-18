@@ -72,6 +72,8 @@
         nerd-fonts.symbols-only
       ];
 
+      console.font = "Anka/Coder Condensed";
+
       # Groups
       users.users.sorb852 = {
         extraGroups = [

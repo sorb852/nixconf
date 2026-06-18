@@ -87,22 +87,22 @@
       # accent7 = "#30374b";
 
       # potential 👀👀
-      # base00= "#222633"
-      # base01= "#434754"
-      # base02= "#646975"
-      # base03= "#858a96"
-      # base04= "#a7acb7"
-      # base05= "#c8cdd8"
-      # base06= "#d0d5de"
-      # base07= "#d8dce4"
-      # base08= "#567c9d"
-      # base09= "#959ba4"
-      # base0A= "#9493a6"
-      # base0B= "#6b77a0"
-      # base0C= "#68789b"
-      # base0D= "#6778a1"
-      # base0E= "#6b7898"
-      # base0F= "#6c7898"
+      shade0 = "#222633";
+      shade1 = "#434754";
+      shade2 = "#646975";
+      shade3 = "#858a96";
+      shade4 = "#a7acb7";
+      shade5 = "#c8cdd8";
+      shade6 = "#d0d5de";
+      shade7 = "#d8dce4";
+      accent0 = "#567c9d";
+      accent1 = "#959ba4";
+      accent2 = "#9493a6";
+      accent3 = "#6b77a0";
+      accent4 = "#68789b";
+      accent5 = "#6778a1";
+      accent6 = "#6b7898";
+      accent7 = "#6c7898";
 
       # yeah im definetly abusing this
       # btw gotten from the goat vimjoyer
@@ -123,22 +123,22 @@
       # accent6 = "#e089a1";
       # accent7 = "#f28534";
 
-      shade0 = "#1e1e2e";
-      shade1 = "#33354c";
-      shade2 = "#494c69";
-      shade3 = "#5e6387";
-      shade4 = "#7479a5";
-      shade5 = "#8990c3";
-      shade6 = "#9fa7e0";
-      shade7 = "#b4befe";
-      accent0 = "#f38ba8";
-      accent1 = "#fab387";
-      accent2 = "#f9e2af";
-      accent3 = "#a6e3a1";
-      accent4 = "#94e2d5";
-      accent5 = "#89b4fa";
-      accent6 = "#cba6f7";
-      accent7 = "#f2cdcd";
+      # shade0 = "#1e1e2e";
+      # shade1 = "#33354c";
+      # shade2 = "#494c69";
+      # shade3 = "#5e6387";
+      # shade4 = "#7479a5";
+      # shade5 = "#8990c3";
+      # shade6 = "#9fa7e0";
+      # shade7 = "#b4befe";
+      # accent0 = "#f38ba8";
+      # accent1 = "#fab387";
+      # accent2 = "#f9e2af";
+      # accent3 = "#a6e3a1";
+      # accent4 = "#94e2d5";
+      # accent5 = "#89b4fa";
+      # accent6 = "#cba6f7";
+      # accent7 = "#f2cdcd";
 
       # shade0 = "#24273a";
       # shade1 = "#1e2030";
