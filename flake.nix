@@ -10,8 +10,10 @@
     nixvim.url = "github:nix-community/nixvim";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
 
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    wrappers.url = "github:BirdeeHub/nix-wrapper-modules";
+    wrappers.inputs.nixpkgs.follows = "nixpkgs";
+
+    millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
 
     devenv.url = "github:cachix/devenv";
     nixpkgs-python.url = "github:cachix/nixpkgs-python";

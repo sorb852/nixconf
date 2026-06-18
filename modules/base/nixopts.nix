@@ -1,3 +1,4 @@
+{ inputs, ... }:
 {
   flake.nixosModules.nixopts = {
     # idk for steam and some other stuff
@@ -10,10 +11,5 @@
       "nix-command"
       "flakes"
     ];
-  };
-
-  flake.homeModules.nixopts = {
-    # idk for steam and some other stuff
-    nixpkgs.config.allowUnfree = true;
   };
 }

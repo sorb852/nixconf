@@ -1,6 +1,16 @@
-{ inputs, ... }:
+{ inputs, self, ... }:
 
 {
+  flake.nixosModules.neovim =
+    { pkgs, ... }:
+    {
+      environment.sessionVariables = {
+        EDITOR = "nvim";
+        MANPAGER = "nvim +Man!";
+      };
+      environment.systemPackages = [ self.packages.${pkgs.system}.neovim ];
+    };
+
   perSystem =
     {
       system,
@@ -15,6 +25,7 @@
         module = ./_conf;
         extraSpecialArgs = {
           inherit inputs;
+          inherit self;
         };
       };
       nvim = nixvim'.makeNixvimWithModule nixvimModule;

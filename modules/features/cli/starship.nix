@@ -1,12 +1,11 @@
 { self, ... }:
 
 {
-  flake.homeModules.starship =
+  flake.nixosModules.starship =
     { lib, ... }:
     {
       programs.starship = {
         enable = true;
-        enableZshIntegration = true;
 
         # I know, I could've just fromToml'd this whole thing.
         # But toml and nix don't differ much so I dont care.
@@ -14,9 +13,9 @@
           add_newline = false;
           format = lib.concatStrings [
             "$os "
-            "[-<](fg:${self.theme.shade1}) "
+            "[-<](fg:${self.theme.shade3}) "
             "$directory$sudo"
-            " [>-](fg:${self.theme.shade1})"
+            " [>-](fg:${self.theme.shade3})"
             "$git_branch $character"
           ];
           right_format = "$nix_shell";
@@ -34,28 +33,28 @@
           directory = {
             format = "[$path]($style)[$read_only]($read_only_style)";
             style = "${self.theme.shade6}";
-            read_only = " IOP";
-            read_only_style = "fg:${self.theme.accent2}";
+            read_only = " ";
+            read_only_style = "fg:${self.theme.accent1}";
           };
 
           # Seems to not work.
           sudo = {
             format = " [$symbol]($style)";
             disabled = true;
-            symbol = "FA";
-            style = "fg:${self.theme.accent2}";
+            symbol = "󱅞";
+            style = "fg:${self.theme.accent1}";
           };
 
           git_branch = {
             disabled = false;
             format = " [$symbol$branch(:$remote_branch)]($style)";
             symbol = "";
-            style = "fg:${self.theme.accent5}";
+            style = "fg:${self.theme.accent4}";
           };
 
           character = {
             disabled = false;
-            success_symbol = "[󰘧](fg:${self.theme.accent5})"; # 󰟢
+            success_symbol = "[󰘧](fg:${self.theme.accent5})";
             error_symbol = "[󰇂](fg:${self.theme.accent0})";
             vimcmd_symbol = "[󰏉](fg:${self.theme.accent5})";
             vimcmd_visual_symbol = "[󰏉](fg:${self.theme.accent4})";
@@ -64,10 +63,11 @@
           };
 
           nix_shell = {
-            disabled = false;
+            disabled = true;
+            heuristic = true;
             format = " [$symbol$state $name]($style)";
             symbol = "󰼪 ";
-            style = "fg:#3c465d";
+            style = "fg:${self.theme.shade6}";
           };
         };
       };

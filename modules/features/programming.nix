@@ -1,16 +1,17 @@
 { self, ... }:
 
 {
-  flake.homeModules.programming =
+  flake.nixosModules.programming =
     { pkgs, ... }:
     {
-      home.packages = [
+      imports = [ self.nixosModules.neovim ];
+      environment.systemPackages = [
+        pkgs.bun
         pkgs.python3
         pkgs.gcc
         pkgs.rustup
         pkgs.gdb
         pkgs.godot
-        self.packages.${pkgs.system}.neovim
       ];
     };
 }

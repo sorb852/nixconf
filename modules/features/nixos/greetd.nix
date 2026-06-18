@@ -7,7 +7,7 @@
         enable = true;
         settings = rec {
           initial_session = {
-            command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd start-hyprland";
+            command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd niri";
             user = "sorb852";
           };
           default_session = initial_session;

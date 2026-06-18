@@ -13,20 +13,6 @@
       ];
 
       # Audio
-      security.pam.loginLimits = [
-        {
-          domain = "@audio";
-          item = "rtprio";
-          type = "-";
-          value = "95";
-        }
-        {
-          domain = "@audio";
-          item = "memlock";
-          type = "-";
-          value = "unlimited";
-        }
-      ];
       security.rtkit.enable = true;
       services.pipewire = {
         enable = true;
@@ -85,5 +71,15 @@
         ankacoder-condensed
         nerd-fonts.symbols-only
       ];
+
+      console.font = "Anka/Coder Condensed";
+
+      # Groups
+      users.users.sorb852 = {
+        extraGroups = [
+          "audio"
+          "networkmanager"
+        ];
+      };
     };
 }

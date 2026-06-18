@@ -3,16 +3,10 @@
   perSystem =
     {
       # lib,
-      system,
       pkgs,
       ...
     }:
     {
-      _module.args.pkgs = import inputs.nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
-
       # NOTE: Use `--no-pure-eval` when running `nix develop`
       # [source](https://devenv.sh/guides/using-with-flake-parts/#entering-the-shell)
 
