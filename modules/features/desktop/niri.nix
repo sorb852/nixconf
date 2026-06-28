@@ -161,18 +161,20 @@
               "Mod+L".focus-column-right = _: { };
 
               "Mod+Ctrl+Left".move-column-left = _: { };
-              "Mod+Ctrl+Down".move-window-down = _: { };
-              "Mod+Ctrl+Up".move-window-up = _: { };
+              "Mod+Ctrl+Down".move-window-down-or-to-workspace-down = _: { };
+              "Mod+Ctrl+Up".move-window-up-or-to-workspace-up = _: { };
               "Mod+Ctrl+Right".move-column-right = _: { };
               "Mod+Ctrl+H".move-column-left = _: { };
-              "Mod+Ctrl+J".move-window-down = _: { };
-              "Mod+Ctrl+K".move-window-up = _: { };
+              "Mod+Ctrl+J".move-window-down-or-to-workspace-down = _: { };
+              "Mod+Ctrl+K".move-window-up-or-to-workspace-up = _: { };
               "Mod+Ctrl+L".move-column-right = _: { };
 
               "Mod+U".focus-workspace-down = _: { };
               "Mod+I".focus-workspace-up = _: { };
               "Mod+Ctrl+U".move-workspace-down = _: { };
               "Mod+Ctrl+I".move-workspace-up = _: { };
+              "Mod+Shift+U".move-workspace-down = _: { };
+              "Mod+Shift+I".move-workspace-up = _: { };
 
               "Mod+BracketLeft".consume-or-expel-window-left = _: { };
               "Mod+BracketRight".consume-or-expel-window-right = _: { };

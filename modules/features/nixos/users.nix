@@ -8,6 +8,7 @@
         extraGroups = [
           "wheel"
           "dialout"
+          "input"
         ];
         shell = pkgs.zsh;
       };

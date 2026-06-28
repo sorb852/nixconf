@@ -60,24 +60,24 @@
         settings = {
           color = {
             gradient = 1;
-            gradient_color_1 = "'#ed8796'";
-            gradient_color_2 = "'#f5a97f'";
-            gradient_color_3 = "'#eed49f'";
-            gradient_color_4 = "'#a6da95'";
-            gradient_color_5 = "'#8bd5ca'";
-            gradient_color_6 = "'#8aadf4'";
-            gradient_color_7 = "'#c6a0f6'";
-            gradient_color_8 = "'#f0c6c6'";
+            gradient_color_1 = "'${self.theme.accent0}'";
+            gradient_color_2 = "'${self.theme.accent1}'";
+            gradient_color_3 = "'${self.theme.accent2}'";
+            gradient_color_4 = "'${self.theme.accent3}'";
+            gradient_color_5 = "'${self.theme.accent4}'";
+            gradient_color_6 = "'${self.theme.accent5}'";
+            gradient_color_7 = "'${self.theme.accent6}'";
+            gradient_color_8 = "'${self.theme.accent7}'";
 
             horizontal_gradient = 1;
-            horizontal_gradient_color_1 = "'#ed8796'";
-            horizontal_gradient_color_2 = "'#f5a97f'";
-            horizontal_gradient_color_3 = "'#eed49f'";
-            horizontal_gradient_color_4 = "'#a6da95'";
-            horizontal_gradient_color_5 = "'#8bd5ca'";
-            horizontal_gradient_color_6 = "'#8aadf4'";
-            horizontal_gradient_color_7 = "'#c6a0f6'";
-            horizontal_gradient_color_8 = "'#f0c6c6'";
+            horizontal_gradient_color_1 = "'${self.theme.accent0}'";
+            horizontal_gradient_color_2 = "'${self.theme.accent1}'";
+            horizontal_gradient_color_3 = "'${self.theme.accent2}'";
+            horizontal_gradient_color_4 = "'${self.theme.accent3}'";
+            horizontal_gradient_color_5 = "'${self.theme.accent4}'";
+            horizontal_gradient_color_6 = "'${self.theme.accent5}'";
+            horizontal_gradient_color_7 = "'${self.theme.accent6}'";
+            horizontal_gradient_color_8 = "'${self.theme.accent7}'";
           };
         };
       };
