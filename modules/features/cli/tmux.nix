@@ -8,7 +8,6 @@
       shortcut = "a";
       keyMode = "vi";
       customPaneNavigationAndResize = true;
-      reverseSplit = true;
       terminal = "xterm-kitty";
 
       extraConfig = ''

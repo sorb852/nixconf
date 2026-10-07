@@ -11,6 +11,14 @@
         self.nixosModules.kitty
       ];
 
+      xdg.portal = {
+        enable = true;
+        extraPortals = [
+          pkgs.xdg-desktop-portal-gtk
+          pkgs.xdg-desktop-portal-gnome
+        ];
+      };
+
       # TODO: Also style GTK and QT
       environment.sessionVariables = {
         QT_QPA_PLATFORMTHEME = "gtk3";

@@ -8,6 +8,7 @@
     {
       # Other system related modules
       imports = [
+        self.nixosModules.users
         self.nixosModules.locale
         self.nixosModules.greetd
       ];
@@ -20,6 +21,21 @@
         alsa.enable = true;
         alsa.support32Bit = true;
         pulse.enable = true;
+        extraConfig.pipewire = {
+          "10-clock-rates" = {
+            "context.properties" = {
+              "default.clock.rate" = 48000;
+              "default.clock.allowed-rates" = [
+                44100
+                48000
+              ];
+
+              "default.clock.quantum" = 1024;
+              "default.clock.min-quantum" = 512;
+              "default.clock.max-quantum" = 2048;
+            };
+          };
+        };
       };
       environment.systemPackages = with pkgs; [
         # pulseaudio
@@ -38,6 +54,7 @@
       # Networking
       networking.hostName = "Centaur";
       networking.networkmanager.enable = true;
+      networking.networkmanager.wifi.powersave = false;
 
       # Power management
       services.upower.enable = true;

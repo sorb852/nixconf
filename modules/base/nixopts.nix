@@ -1,4 +1,5 @@
 { inputs, ... }:
+
 {
   flake.nixosModules.nixopts = {
     # idk for steam and some other stuff
@@ -11,5 +12,12 @@
       "nix-command"
       "flakes"
     ];
+  };
+
+  perSystem = { system, ... }: {
+    _module.args.pkgs = import inputs.nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    };
   };
 }

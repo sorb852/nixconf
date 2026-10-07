@@ -13,7 +13,7 @@
       devenv.shells.ctf = {
         languages.python = {
           enable = true;
-          version = "3.13";
+          version = "3.14";
           venv = {
             enable = true;
             requirements = ''
@@ -40,6 +40,8 @@
           netcat-gnu
           lazysql
           bun
+          nmap
+          tesseract
           nmap
         ];
 
